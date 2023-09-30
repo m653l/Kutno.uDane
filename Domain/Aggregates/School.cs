@@ -7,5 +7,8 @@
         public Exam MathExam { get; set; } = new();
         public Exam PolishExam { get; set; } = new();
         public Exam EngExam { get; set; } = new();
+
+        public decimal AvgMoneyPerStudent { get; set; }
+        public decimal SumOfMoney { get; set; }
     }
 }
