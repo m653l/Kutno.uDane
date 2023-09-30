@@ -1,15 +1,19 @@
-﻿using Application.Services.Interfaces;
+﻿using Application.Models;
+using Application.Services.Interfaces;
+using Application.Stores;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Aggregates;
+using LiveChartsCore;
+using LiveChartsCore.ConditionalDraw;
+using LiveChartsCore.Measure;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.Themes;
+using SkiaSharp;
+using System.Collections.ObjectModel;
 
 namespace Application.ViewModels
 {
@@ -21,6 +25,17 @@ namespace Application.ViewModels
             Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
 
+        public ObservableCollection<School> Schools { get; set; }
+        public ObservableCollection<PilotInfo> SchoolsInfo { get; set; }
+
+        [ObservableProperty]
+        private RowSeries<PilotInfo> _series;
+        [ObservableProperty]
+        private Axis[] _xAxes = { new Axis { SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220)) } };
+
+        [ObservableProperty]
+        private Axis[] _yAxes = { new Axis { IsVisible = false } };
+
         [ObservableProperty]
         private string _sioFilePath = string.Empty;
         [ObservableProperty]
@@ -30,7 +45,10 @@ namespace Application.ViewModels
         [ObservableProperty]
         private string _incomesFilePath = string.Empty;
 
+        SolidColorPaint[] _paints;
+
         private readonly IImportDataService _importDataService;
+        private readonly ApplicationDataStore _applicationDataStore;
         public DashboardViewModel(IServiceProvider serviceProvider, IImportDataService importDataService) : base(serviceProvider)
         {
             Types.Add(XmlType);
@@ -62,6 +80,7 @@ namespace Application.ViewModels
         {
             _importDataService.ImportExamsData(SchoolsFilePath);
             _importDataService.ImportSioData(SioFilePath);
+            SetUpChart();
         }
 
         private async Task<string> PickFileAsync(Control view)
@@ -87,6 +106,24 @@ namespace Application.ViewModels
             }
 
             return string.Empty;
+        }
+
+        private void SetUpChart()
+        {
+            _paints = Enumerable.Range(0, _applicationDataStore.Schools.Count)
+            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i].AsSKColor()))
+            .ToArray();
+
+            Series = new RowSeries<PilotInfo>
+            {
+                Values = SchoolsInfo,
+                DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
+                DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsTranslate = new(-1, 0),
+                DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
+                MaxBarWidth = 50,
+                Padding = 10,
+            };
         }
     }
 }
