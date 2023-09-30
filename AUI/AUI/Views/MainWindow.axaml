@@ -6,7 +6,8 @@
         xmlns:views="clr-namespace:AUI.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AUI.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="AUI">
+        Icon="/Assets/logo.ico"
+        Title="uDane - Edukacja w równowadze z finansami">
         <views:MainView />
+	
 </Window>

@@ -25,7 +25,7 @@
 	<Style>
 		<Style.Resources>
 			<!-- Foreground Colors -->
-			<SolidColorBrush x:Key="ThemeColor" Color="#ff0044"/>
+			<SolidColorBrush x:Key="ThemeColor" Color="Black"/>
 			<SolidColorBrush x:Key="Success" Color="#198754"/>
 			<SolidColorBrush x:Key="Danger" Color="#DC3545"/>
 			<SolidColorBrush x:Key="White" Color="#ffffff"/>

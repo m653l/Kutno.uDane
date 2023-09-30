@@ -15,6 +15,10 @@
     <None Remove="Assets\fonts\JetBrainsMono-Light.ttf" />
     <None Remove="Assets\fonts\JetBrainsMono-Regular.ttf" />
     <None Remove="Assets\fonts\JetBrainsMono-Thin.ttf" />
+    <None Remove="Assets\language\germany.png" />
+    <None Remove="Assets\language\poland.png" />
+    <None Remove="Assets\language\uk.png" />
+    <None Remove="Assets\logo.ico" />
   </ItemGroup>
 
   <ItemGroup>

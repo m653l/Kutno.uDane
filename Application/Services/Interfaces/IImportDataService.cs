@@ -4,5 +4,6 @@
     {
         void ImportExamsData(string filePath);
         void ImportSioData(string filePath);
+        void ImportIncome(string filePath);
     }
 }

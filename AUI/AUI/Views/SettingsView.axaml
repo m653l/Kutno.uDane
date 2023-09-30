@@ -4,5 +4,66 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.SettingsView">
-  Welcome to Avalonia!
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Margin="20 30 0 0 ">
+			<TextBlock FontSize="24">Ustawienia</TextBlock>
+		</StackPanel>
+		<StackPanel Grid.Row="1" Margin="70 20 0 0">
+			
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Margin="10">Motyw Ciemny</TextBlock>
+				<CheckBox x:Name="darkMode"></CheckBox>
+			</StackPanel>
+			
+			<StackPanel Margin="0 20 0 0" Orientation="Horizontal">
+				<TextBlock Margin="10">Język</TextBlock>
+				
+				<ComboBox Height="20" Width="100">
+					
+					<ComboBoxItem>
+						<StackPanel Height="15" VerticalAlignment="Center" Orientation="Horizontal">
+							<TextBlock>PL</TextBlock>
+							<Image Margin="5 0 0 0" Source="/Assets/language/poland.png"></Image>
+						</StackPanel>
+						
+				</ComboBoxItem>
+					<ComboBoxItem>
+						<StackPanel Height="15" VerticalAlignment="Center" Orientation="Horizontal">
+							<TextBlock>ENG</TextBlock>
+							<Image Margin="5 0 0 0" Source="/Assets/language/uk.png"></Image>
+						</StackPanel>
+						
+					</ComboBoxItem>
+					<ComboBoxItem>
+						<StackPanel Height="15"  VerticalAlignment="Center" Orientation="Horizontal">
+							<TextBlock>GER</TextBlock>
+							<Image Margin="5 0 0 0" Source="/Assets/language/germany.png"></Image>
+						</StackPanel>
+					</ComboBoxItem>
+				</ComboBox>
+			</StackPanel>
+
+			<StackPanel Margin="5 15 0 0">
+				<Button Foreground="White" Background="Green">Sprawdź Dostępność Aktualizacji</Button>
+				<TextBlock FontSize="9" Foreground="Green" Margin="10">Ostatnia aktualizacja 1.10.2023</TextBlock>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock Foreground="Gray" FontSize="11" Padding="15">
+				ver. : 0.01 dev - SKOPCA studios : HackYeah2023 
+			</TextBlock>
+		</StackPanel>
+	</Grid>
 </UserControl>
