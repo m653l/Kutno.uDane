@@ -41,7 +41,10 @@
 				<Button	Content="Analizuj Dane"
 						Classes="analize"
 						Command="{Binding ReadDataCommand}"/>
+				
+				<TextBlock Margin="10 5 0 0">Ilość uczniów:</TextBlock>
 			</StackPanel>
+			
 		</StackPanel>
 		<lvc:CartesianChart Grid.Row="1"
 							Series="{Binding Series}"
