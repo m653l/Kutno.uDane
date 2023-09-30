@@ -20,14 +20,17 @@ namespace Application.ViewModels
     public partial class DashboardViewModel : CoreViewModel
     {
         public static List<FilePickerFileType> Types = new List<FilePickerFileType>();
+
         public static FilePickerFileType XmlType { get; } = new("All Images")
         {
             Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
+
         public ObservableCollection<PilotInfo> SchoolsInfo { get; set; } = new();
 
         [ObservableProperty]
         private ISeries[] _series;
+
         [ObservableProperty]
         private Axis[] _xAxes = { new Axis { SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220)) } };
 
@@ -36,10 +39,13 @@ namespace Application.ViewModels
 
         [ObservableProperty]
         private string _sioFilePath = string.Empty;
+
         [ObservableProperty]
         private string _schoolsFilePath = string.Empty;
+
         [ObservableProperty]
         private string _expensesFilePath = string.Empty;
+
         [ObservableProperty]
         private string _incomesFilePath = string.Empty;
 
@@ -72,26 +78,31 @@ namespace Application.ViewModels
 
             _series = new[] { rowSeries };
         }
+
         [RelayCommand]
         public async Task PickSio(Control view)
         {
             SioFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task PickSchools(Control view)
         {
             SchoolsFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task PickExpenses(Control view)
         {
             ExpensesFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task PickIncomes(Control view)
         {
             IncomesFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task ReadData()
         {
