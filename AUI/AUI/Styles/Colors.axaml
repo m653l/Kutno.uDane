@@ -17,6 +17,7 @@
 				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray9}"/>
 				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray10}"/>
 				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray11}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray12}"/>
 			</UniformGrid>
 		</Border>
 	</Design.PreviewWith>
@@ -25,7 +26,7 @@
 	<Style>
 		<Style.Resources>
 			<!-- Foreground Colors -->
-			<SolidColorBrush x:Key="ThemeColor" Color="Black"/>
+			<SolidColorBrush x:Key="ThemeColor" Color="#ff0044"/>
 			<SolidColorBrush x:Key="Success" Color="#198754"/>
 			<SolidColorBrush x:Key="Danger" Color="#DC3545"/>
 			<SolidColorBrush x:Key="White" Color="#ffffff"/>
@@ -42,6 +43,7 @@
 			<SolidColorBrush x:Key="Gray9" Color="#B0B0B0"/>
 			<SolidColorBrush x:Key="Gray10" Color="#C0C0C0"/>
 			<SolidColorBrush x:Key="Gray11" Color="#E0E0E0"/>
+			<SolidColorBrush x:Key="Gray12" Color="#F5F5F5"/>
 		</Style.Resources>
 	</Style>
 </Styles>

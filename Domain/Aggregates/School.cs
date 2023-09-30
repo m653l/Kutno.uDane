@@ -13,5 +13,15 @@
 
         public decimal Income { get; set; } = 0;
         public decimal Expenses { get; set; } = 0;
+
+        public decimal Saldo()
+        {
+            return SumOfMoney + Income - Expenses;
+        }
+
+        public decimal SaldoPerStudent()
+        {
+            return Saldo()/StudentCount;
+        }
     }
 }

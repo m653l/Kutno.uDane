@@ -47,7 +47,7 @@
 							Series="{Binding Series}"
 							XAxes="{Binding XAxes}"
 							YAxes="{Binding YAxes}"
-							TooltipPosition="Hidden">
+							ZoomMode="Both">
 		</lvc:CartesianChart>
 	</Grid>
 

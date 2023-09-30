@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Domain.Aggregates;
 using LiveChartsCore;
 using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
@@ -35,7 +34,7 @@ namespace Application.ViewModels
         private Axis[] _xAxes = { new Axis { SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220)) } };
 
         [ObservableProperty]
-        private Axis[] _yAxes = { new Axis { IsVisible = false } };
+        private Axis[] _yAxes = { new Axis { IsVisible = false, } };
 
         [ObservableProperty]
         private string _sioFilePath = string.Empty;
@@ -63,10 +62,12 @@ namespace Application.ViewModels
             var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
                 Values = SchoolsInfo,
-                DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
+                DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0)),
                 DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsSize = 14,
+                DataLabelsMaxWidth = 1000,
                 DataLabelsTranslate = new(-1, 0),
-                DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
+                DataLabelsFormatter = point => $"{point.Model!.Name}",
                 MaxBarWidth = 5000,
                 Padding = 10,
             }.OnPointMeasured(point =>

@@ -2,7 +2,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.PlotterView">
-  Welcome to Avalonia!
+	<TabControl Margin="5" >
+		<TabItem Name="tab1" Header="Saldo">
+			<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}"/>
+		</TabItem>
+		<TabItem Name="tab2" Header="Saldo na ucznia">
+			<lvc:CartesianChart Name="chart2" Series="{Binding Series}"/>
+		</TabItem>
+		<TabItem  Name="tab3" Header="Staniny">
+			<lvc:CartesianChart Name="chart3" Series="{Binding Series}"/>
+		</TabItem>
+		<TabItem  Name="tab4" Header="Wzkaźnik">
+			<lvc:CartesianChart Name="chart4" Series="{Binding Series}"/>
+		</TabItem>
+	</TabControl>
 </UserControl>
