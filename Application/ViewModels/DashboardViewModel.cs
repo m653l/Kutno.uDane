@@ -128,6 +128,9 @@ namespace Application.ViewModels
             {
                 SchoolsInfo.Add(new PilotInfo(_applicationDataStore.Schools[i].Name, (int)_applicationDataStore.Schools[i].StudentCount, _paints[i]));
             }
+
+            OnPropertyChanged(nameof(SchoolsInfo));
+            OnPropertyChanged(nameof(Series));
         }
     }
 }
