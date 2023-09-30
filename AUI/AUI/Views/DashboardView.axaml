@@ -40,7 +40,8 @@
 						Command="{Binding ReadDataCommand}"/>
 			</StackPanel>
 		</StackPanel>
-		<lvc:CartesianChart Series="{Binding Series}"
+		<lvc:CartesianChart Grid.Row="1"
+							Series="{Binding Series}"
 							XAxes="{Binding XAxes}"
 							YAxes="{Binding YAxes}"
 							TooltipPosition="Hidden">

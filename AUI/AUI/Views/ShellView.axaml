@@ -16,8 +16,8 @@
 			<Button Foreground="{StaticResource ThemeColor}"
 					Classes="Toolbar"
 					HorizontalContentAlignment="Center"
-					VerticalContentAlignment="Center">
-
+					VerticalContentAlignment="Center"
+					Command="{Binding GoToDashboardCommand}">
 				<PathIcon Data="{StaticResource apps_list_regular}"/>
 			</Button>
 			<Button Foreground="{StaticResource ThemeColor}"

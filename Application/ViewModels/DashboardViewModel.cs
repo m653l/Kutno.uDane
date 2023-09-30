@@ -6,8 +6,6 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Domain.Aggregates;
-using LiveChartsCore;
-using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -24,8 +22,6 @@ namespace Application.ViewModels
         {
             Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
-
-        public ObservableCollection<School> Schools { get; set; }
         public ObservableCollection<PilotInfo> SchoolsInfo { get; set; }
 
         [ObservableProperty]
@@ -54,6 +50,17 @@ namespace Application.ViewModels
             Types.Add(XmlType);
 
             _importDataService = importDataService;
+
+            Series = new RowSeries<PilotInfo>
+            {
+                Values = SchoolsInfo,
+                DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
+                DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsTranslate = new(-1, 0),
+                DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
+                MaxBarWidth = 50,
+                Padding = 10,
+            };
         }
         [RelayCommand]
         public async Task PickSio(Control view)
@@ -115,16 +122,10 @@ namespace Application.ViewModels
             .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i].AsSKColor()))
             .ToArray();
 
-            Series = new RowSeries<PilotInfo>
+            for (int i = 0; i < _applicationDataStore.Schools.Count; i++)
             {
-                Values = SchoolsInfo,
-                DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
-                DataLabelsPosition = DataLabelsPosition.End,
-                DataLabelsTranslate = new(-1, 0),
-                DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
-                MaxBarWidth = 50,
-                Padding = 10,
-            };
+                SchoolsInfo.Add(new PilotInfo(_applicationDataStore.Schools[i].Name, (int)_applicationDataStore.Schools[i].StudentCount, _paints[i]));
+            }
         }
     }
 }
