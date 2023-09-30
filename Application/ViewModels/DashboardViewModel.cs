@@ -1,7 +1,9 @@
-﻿using Avalonia.Controls;
+﻿using Application.Services;
+using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -27,9 +29,13 @@ namespace Application.ViewModels
         private string _expensesFilePath = string.Empty;
         [ObservableProperty]
         private string _incomesFilePath = string.Empty;
+
+        private readonly ImportDataService _importDataService;
         public DashboardViewModel(IServiceProvider serviceProvider) : base(serviceProvider)
         {
             Types.Add(XmlType);
+
+            _importDataService = serviceProvider.GetService<ImportDataService>()!;
         }
         [RelayCommand]
         public async Task PickSio(Control view)
@@ -50,6 +56,11 @@ namespace Application.ViewModels
         public async Task PickIncomes(Control view)
         {
             IncomesFilePath = await PickFileAsync(view);
+        }
+        [RelayCommand]
+        public async Task ReadData()
+        {
+
         }
 
         private async Task<string> PickFileAsync(Control view)
