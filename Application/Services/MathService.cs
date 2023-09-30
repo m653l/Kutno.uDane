@@ -9,6 +9,6 @@ namespace Application.Services
 {
     public class MathService : IMathService
     {
-
+        
     }
 }
