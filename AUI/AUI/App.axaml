@@ -5,7 +5,7 @@
 			 xmlns:views="using:AUI.Views"
 			 xmlns:controls="using:AUI.Views.Controls"
              x:Class="AUI.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
 	<Application.DataTemplates>
@@ -19,6 +19,19 @@
 			<views:PlotView/>
 		</DataTemplate>
 		<DataTemplate DataType="{x:Type controlsVM:JumpScareDialogViewModel}">
+			<controls:JumpscareDialogView />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
+			<controls:JumpscareDialogView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewModels:PlotViewModel}">
+			<controls:JumpscareDialogView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewModels:SummaryViewModel}">
+			<controls:JumpscareDialogView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
 			<controls:JumpscareDialogView />
 		</DataTemplate>
 		

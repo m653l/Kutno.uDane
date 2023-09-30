@@ -46,6 +46,12 @@ namespace Application
             services.AddTransient<BoberViewModel>();
             services.AddTransient<KapibaraViewModel>();
 
+            services.AddTransient<DashboardViewModel>();
+            services.AddTransient<PlotterViewModel>();
+            services.AddTransient<SummaryViewModel>();
+            services.AddTransient<SettingsViewModel>();
+
+
             services.AddTransient<JumpScareDialogViewModel>();
         }
     }
