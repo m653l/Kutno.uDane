@@ -44,4 +44,13 @@
 		<StyleInclude Source="/Styles/Fonts.axaml"/>
 		<StyleInclude Source="/Styles/Icons.axaml"/>
     </Application.Styles>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source='/Styles/Button.axaml'/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+	
 </Application>
