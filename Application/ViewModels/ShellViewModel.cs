@@ -12,22 +12,22 @@ namespace Application.ViewModels
         public ShellViewModel(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [RelayCommand]
-        public void GoToDashboardCommand()
+        public void GoToDashboard()
         {
             _navigation.NavigateTo<DashboardViewModel>();
         }
         [RelayCommand]
-        public void GoToPlotterCommand()
+        public void GoToPlotter()
         {
             _navigation.NavigateTo<PlotterViewModel>();
         }
         [RelayCommand]
-        public void GoToSummaryCommand()
+        public void GoToSummary()
         {
             _navigation.NavigateTo<SummaryViewModel>();
         }
         [RelayCommand]
-        public void GoToSettingsCommand()
+        public void GoToSettings()
         {
             _navigation.NavigateTo<SettingsViewModel>();
         }
