@@ -23,16 +23,16 @@
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
-			<controls:JumpscareDialogView />
+			<views:DashboardView />
 		</DataTemplate>
-		<DataTemplate DataType="{x:Type viewModels:PlotViewModel}">
-			<controls:JumpscareDialogView />
+		<DataTemplate DataType="{x:Type viewModels:PlotterViewModel}">
+			<views:PlotterView />
 		</DataTemplate>
 		<DataTemplate DataType="{x:Type viewModels:SummaryViewModel}">
-			<controls:JumpscareDialogView />
+			<views:SummaryView />
 		</DataTemplate>
 		<DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
-			<controls:JumpscareDialogView />
+			<views:SettingsView />
 		</DataTemplate>
 		
 	</Application.DataTemplates>
