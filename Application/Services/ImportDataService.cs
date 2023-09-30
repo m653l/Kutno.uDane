@@ -20,8 +20,6 @@ namespace Application.Services
 
         public void ImportExamsData(string filePath)
         {
-            filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\Wyniki_e8_szkoly_2022.xlsx"; // Replace with the path to your .xlsx file
-
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -94,16 +92,12 @@ namespace Application.Services
 
         public void ImportSioData(string filePath)
         {
-            //string filePath = "C:\\Users\\xarda\\Downloads\\tettt.xlsx"; // Replace with the path to your .xlsx file
-
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to read the first worksheet
-
-                List<string> filteredData = new List<string>();
 
                 for (int row = 7; row <= worksheet.Dimension.End.Row; row++)
                 {
@@ -138,6 +132,36 @@ namespace Application.Services
                     }
                 }
             }
+        }
+
+        public void ImportIncome(string filePath)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to read the first worksheet
+
+                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                {
+                    string searchText = worksheet.Cells[row, 17].Text.ToUpper();
+                    School? school = string.IsNullOrEmpty(searchText)
+                        ? null
+                        : _applicationDataStore.Schools.FirstOrDefault(x => x.Name.Contains(searchText));
+
+                    if (school is null || worksheet.Cells[row, 33].Text == "")
+                        continue;
+
+                    school.Income += decimal.Parse(worksheet.Cells[row, 33].Text);
+                }
+            }
+
+            _applicationDataStore.Schools.ToString();
+        }
+
+        public void ImportExpenses()
+        {
+
         }
     }
 }

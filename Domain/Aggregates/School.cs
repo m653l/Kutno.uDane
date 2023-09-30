@@ -10,5 +10,7 @@
 
         public decimal AvgMoneyPerStudent { get; set; }
         public decimal SumOfMoney { get; set; }
+
+        public decimal Income { get; set; } = 0;
     }
 }

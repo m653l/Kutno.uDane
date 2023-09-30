@@ -62,6 +62,7 @@ namespace Application.ViewModels
         {
             _importDataService.ImportExamsData(SchoolsFilePath);
             _importDataService.ImportSioData(SioFilePath);
+            _importDataService.ImportIncome(IncomesFilePath);
         }
 
         private async Task<string> PickFileAsync(Control view)
