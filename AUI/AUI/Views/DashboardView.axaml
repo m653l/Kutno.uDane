@@ -34,7 +34,7 @@
 						Command="{Binding PickIncomesCommand}"
 						CommandParameter="{Binding $parent[UserControl]}"/>
 			</Grid>
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" Margin="10">
 				<Button	Content="Read Data from Files"
 						Command="{Binding ReadDataCommand}"/>
 			</StackPanel>

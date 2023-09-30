@@ -1,4 +1,4 @@
-﻿using Application.Services;
+﻿using Application.Services.Interfaces;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -18,7 +18,7 @@ namespace Application.ViewModels
         public static List<FilePickerFileType> Types = new List<FilePickerFileType>();
         public static FilePickerFileType XmlType { get; } = new("All Images")
         {
-            Patterns = new[] { "*.xml", "*.xlsx" }
+            Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
 
         [ObservableProperty]
@@ -30,12 +30,12 @@ namespace Application.ViewModels
         [ObservableProperty]
         private string _incomesFilePath = string.Empty;
 
-        private readonly ImportDataService _importDataService;
-        public DashboardViewModel(IServiceProvider serviceProvider) : base(serviceProvider)
+        private readonly IImportDataService _importDataService;
+        public DashboardViewModel(IServiceProvider serviceProvider, IImportDataService importDataService) : base(serviceProvider)
         {
             Types.Add(XmlType);
 
-            _importDataService = serviceProvider.GetService<ImportDataService>()!;
+            _importDataService = importDataService;
         }
         [RelayCommand]
         public async Task PickSio(Control view)
@@ -60,7 +60,8 @@ namespace Application.ViewModels
         [RelayCommand]
         public async Task ReadData()
         {
-
+            _importDataService.ImportSioData(SioFilePath);
+            _importDataService.ImportExamsData(SchoolsFilePath);
         }
 
         private async Task<string> PickFileAsync(Control view)
