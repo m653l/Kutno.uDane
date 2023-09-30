@@ -62,10 +62,12 @@ namespace Application.ViewModels
             var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
                 Values = SchoolsInfo,
-                DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
+                DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0)),
                 DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsSize = 14,
+                DataLabelsMaxWidth = 1000,
                 DataLabelsTranslate = new(-1, 0),
-                DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
+                DataLabelsFormatter = point => $"{point.Model!.Name}",
                 MaxBarWidth = 5000,
                 Padding = 10,
             }.OnPointMeasured(point =>

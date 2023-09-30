@@ -10,5 +10,7 @@ namespace Domain.Aggregates
         public decimal? Deviation { get; set; }
         public decimal? Median { get; set; }
         public decimal? Modal { get; set; }
+
+        public int? Stanin { get; set; }
     }
 }
