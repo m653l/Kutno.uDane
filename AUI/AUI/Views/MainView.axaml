@@ -10,10 +10,10 @@
 			 helpers:ViewModelLocator.AutoWireViewModel="True"
              x:Class="AUI.Views.MainView">
 	<Grid>
-		<Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
 			<RowDefinition Height="auto" />
 			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+		</Grid.ColumnDefinitions>
 		
 		<views:ShellView />
 		<ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" x:CompileBindings="False"/>

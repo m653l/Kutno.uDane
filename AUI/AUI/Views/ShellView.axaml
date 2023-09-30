@@ -2,8 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="40" d:DesignHeight="500"
              x:Class="AUI.Views.ShellView"
-			 Background="Red">
-	Welcome to Avalonia! Bober
+			 Background="{StaticResource Gray11}">
+	<StackPanel HorizontalAlignment="Center" Margin="3">
+		<Button Classes="Toolbar" 
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center">
+			<PathIcon Data="{StaticResource apps_list_regular}"/>
+		</Button>
+	</StackPanel>
 </UserControl>
