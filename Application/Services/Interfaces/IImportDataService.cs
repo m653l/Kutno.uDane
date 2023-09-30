@@ -2,7 +2,7 @@
 {
     public interface IImportDataService
     {
-        void ImportExamsData();
-        void ImportSioData();
+        void ImportExamsData(string filePath);
+        void ImportSioData(string filePath);
     }
 }

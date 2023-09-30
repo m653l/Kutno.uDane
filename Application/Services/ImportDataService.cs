@@ -18,9 +18,9 @@ namespace Application.Services
             _applicationDataStore = applicationDataStore;
         }
 
-        public void ImportExamsData()
+        public void ImportExamsData(string filePath)
         {
-            string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\Wyniki_e8_szkoly_2022.xlsx"; // Replace with the path to your .xlsx file
+            // string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\Wyniki_e8_szkoly_2022.xlsx"; // Replace with the path to your .xlsx file
 
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -92,9 +92,9 @@ namespace Application.Services
             }
         }
 
-        public void ImportSioData()
+        public void ImportSioData(string filePath)
         {
-            string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\SIO30.09.2022qwe.xlsx"; // Replace with the path to your .xlsx file
+            // string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\SIO30.09.2022qwe.xlsx"; // Replace with the path to your .xlsx file
 
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
