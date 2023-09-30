@@ -6,6 +6,7 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Domain.Aggregates;
+using LiveChartsCore;
 using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
@@ -19,14 +20,17 @@ namespace Application.ViewModels
     public partial class DashboardViewModel : CoreViewModel
     {
         public static List<FilePickerFileType> Types = new List<FilePickerFileType>();
+
         public static FilePickerFileType XmlType { get; } = new("All Images")
         {
             Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
+
         public ObservableCollection<PilotInfo> SchoolsInfo { get; set; } = new();
 
         [ObservableProperty]
-        private RowSeries<PilotInfo> _series;
+        private ISeries[] _series;
+
         [ObservableProperty]
         private Axis[] _xAxes = { new Axis { SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220)) } };
 
@@ -35,10 +39,13 @@ namespace Application.ViewModels
 
         [ObservableProperty]
         private string _sioFilePath = string.Empty;
+
         [ObservableProperty]
         private string _schoolsFilePath = string.Empty;
+
         [ObservableProperty]
         private string _expensesFilePath = string.Empty;
+
         [ObservableProperty]
         private string _incomesFilePath = string.Empty;
 
@@ -53,14 +60,14 @@ namespace Application.ViewModels
             _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
 
-            Series = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
+            var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
                 Values = SchoolsInfo,
                 DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
                 DataLabelsPosition = DataLabelsPosition.End,
                 DataLabelsTranslate = new(-1, 0),
                 DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
-                MaxBarWidth = 50,
+                MaxBarWidth = 5000,
                 Padding = 10,
             }.OnPointMeasured(point =>
             {
@@ -68,27 +75,34 @@ namespace Application.ViewModels
                 if (point.Visual is null) return;
                 point.Visual.Fill = point.Model!.Paint;
             });
+
+            _series = new[] { rowSeries };
         }
+
         [RelayCommand]
         public async Task PickSio(Control view)
         {
             SioFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task PickSchools(Control view)
         {
             SchoolsFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task PickExpenses(Control view)
         {
             ExpensesFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task PickIncomes(Control view)
         {
             IncomesFilePath = await PickFileAsync(view);
         }
+
         [RelayCommand]
         public async Task ReadData()
         {
@@ -127,15 +141,15 @@ namespace Application.ViewModels
         private void SetUpChart()
         {
             _paints = Enumerable.Range(0, _applicationDataStore.Schools.Count)
-            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i%ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
-            .ToArray();
+                .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i%ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
+                .ToArray();
 
             for (int i = 0; i < _applicationDataStore.Schools.Count; i++)
             {
-                SchoolsInfo.Add(new PilotInfo(_applicationDataStore.Schools[i].Name, (int)_applicationDataStore.Schools[i].StudentCount, _paints[i]));
+                SchoolsInfo.Add(new PilotInfo(_applicationDataStore.Schools[i].Name, (double)_applicationDataStore.Schools[i].StudentCount, _paints[i]));
             }
 
-            SchoolsInfo.OrderBy(i => i.Value);
+            Series[0].Values = SchoolsInfo.OrderBy(i => i.Value).ToList();
 
             OnPropertyChanged(nameof(SchoolsInfo));
             OnPropertyChanged(nameof(Series));
