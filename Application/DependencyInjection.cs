@@ -30,6 +30,7 @@ namespace Application
             AddViewModels(services);
 
             services.AddTransient<INavigationService, NavigationService>();
+            services.AddTransient<IImportDataService, ImportDataService>();
 
             services.AddSingleton<NavigationStore>();
             services.AddSingleton<ApplicationDataStore>();
