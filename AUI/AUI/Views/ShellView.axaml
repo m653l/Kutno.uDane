@@ -7,33 +7,37 @@
              xmlns:viewModels="using:Application.ViewModels"
 			 xmlns:helpers="using:AUI.Views.Helpers"
 			 helpers:ViewModelLocator.AutoWireViewModel="True"
-			 Background="{StaticResource Gray11}"
 			 x:DataType="viewModels:ShellViewModel">
-	<StackPanel HorizontalAlignment="Center" Margin="5">
-		<Button Foreground="{StaticResource ThemeColor}"
-				Classes="Toolbar" 
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"
-				Command="{Binding GoToDashboardCommand}">
-			<PathIcon Data="{StaticResource apps_list_regular}"/>
-		</Button>
-		<Button Foreground="{StaticResource ThemeColor}"
-				Classes="Toolbar"
-				Margin="0 5 0 0"
-				Command="{Binding GoToPlotterCommand}">
-			<PathIcon Data="{StaticResource data_scatter_regular}"/>
-		</Button>
-		<Button Foreground="{StaticResource ThemeColor}"
-				Classes="Toolbar"
-				Margin="0 5 0 0"
-				Command="{Binding GoToSummaryCommand}">
-			<PathIcon Data="{StaticResource organization_regular}"/>
-		</Button>
-		<Button Foreground="{StaticResource ThemeColor}"
-				Classes="Toolbar"
-				Margin="0 5 0 0"
-				Command="{Binding GoToSettingsCommand}">
-			<PathIcon Data="{StaticResource settings_regular}"/>
-		</Button>
-	</StackPanel>
+
+
+	
+	<Border Margin="5 5 5 5" CornerRadius="10"  Background="{StaticResource Gray11}">
+		<StackPanel HorizontalAlignment="Center" Margin="5">
+			<Button Foreground="{StaticResource ThemeColor}"
+					Classes="Toolbar"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center">
+
+				<PathIcon Data="{StaticResource apps_list_regular}"/>
+			</Button>
+			<Button Foreground="{StaticResource ThemeColor}"
+					Classes="Toolbar"
+					Margin="0 5 0 0"
+					Command="{Binding GoToPlotterCommand}">
+				<PathIcon Data="{StaticResource data_scatter_regular}"/>
+			</Button>
+			<Button Foreground="{StaticResource ThemeColor}"
+					Classes="Toolbar"
+					Margin="0 5 0 0"
+					Command="{Binding GoToSummaryCommand}">
+				<PathIcon Data="{StaticResource organization_regular}"/>
+			</Button>
+			<Button Foreground="{StaticResource ThemeColor}"
+					Classes="Toolbar"
+					Margin="0 5 0 0"
+					Command="{Binding GoToSettingsCommand}">
+				<PathIcon Data="{StaticResource settings_regular}"/>
+			</Button>
+		</StackPanel>
+	</Border>
 </UserControl>

@@ -12,10 +12,10 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"></RowDefinition>
 		</Grid.RowDefinitions>
-		<Border  Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="0 0 0 1">
+		<Border  Grid.Row="0" Grid.Column="0" BorderBrush="{StaticResource Gray11}" BorderThickness="0 0 0 1">
 			<StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-				<Image Margin="5" Height="45" Source="/Assets/logo.ico"></Image>
-				<TextBlock VerticalAlignment="Center" Margin="15 5 5 5" FontSize="36">uDane</TextBlock>
+				<Image Margin="15 5 5 5" Height="35" Source="/Assets/logo.ico"></Image>
+				<TextBlock VerticalAlignment="Center" Foreground="Black" Margin="8 2 2 2" FontSize="22">uDane</TextBlock>
 			</StackPanel>
 		</Border>
 
