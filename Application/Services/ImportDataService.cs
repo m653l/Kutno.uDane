@@ -1,8 +1,10 @@
 ﻿using Application.Services.Interfaces;
 using Application.Stores;
+using Domain.Aggregates;
 using Domain.Dictionaries;
 using OfficeOpenXml;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Application.Services
 {
@@ -16,9 +18,9 @@ namespace Application.Services
             _applicationDataStore = applicationDataStore;
         }
 
-        public void ImportExamsData()
+        public void ImportExamsData(string filePath)
         {
-            string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\Wyniki_e8_szkoly_2022.xlsx"; // Replace with the path to your .xlsx file
+            // string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\Wyniki_e8_szkoly_2022.xlsx"; // Replace with the path to your .xlsx file
 
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -90,80 +92,39 @@ namespace Application.Services
             }
         }
 
-        public void ImportSioData()
+        public void ImportSioData(string filePath)
         {
-            //string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\SIO30.09.2022.xml"; // Replace with the path to your .xlsx file
+            // string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\SIO30.09.2022qwe.xlsx"; // Replace with the path to your .xlsx file
 
-            //// Set the LicenseContext to suppress the license exception
-            //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            // Set the LicenseContext to suppress the license exception
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            //using (var package = new ExcelPackage(new FileInfo(filePath)))
-            //{
-            //    ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to read the first worksheet
-
-            //    List<string> filteredData = new List<string>();
-
-            //    for (int row = 7; row <= worksheet.Dimension.End.Row; row++)
-            //    {
-            //        string establishmentType = worksheet.Cells[row, 11].Text;
-
-            //        if (establishmentType.Equals("Szkoła podstawowa", StringComparison.OrdinalIgnoreCase))
-            //        {
-            //            decimal avgNumerator = 0;
-            //            decimal studentCount = Math.Round(decimal.Parse(worksheet.Cells[row, 34].Text));
-
-            //            // Update missing student count
-            //            _applicationDataStore.Schools.FirstOrDefault(x => x.Name == worksheet.Cells[row, 12].Text).StudentCount = studentCount;
-
-            //            for (int col = 38; col <= 132; col++) // Columns AL to DY
-            //            {
-            //                string header = worksheet.Cells[6, col].Text;
-
-            //                decimal weight = WeightsDictionaries.GetWeight(header);
-
-            //                decimal pCount = decimal.Parse(worksheet.Cells[row, col].Text);
-
-            //                avgNumerator += (pCount * weight * moneyPerStudent);
-            //            }
-
-            //            decimal avgPerStudent = avgNumerator / studentCount;
-
-            //            decimal schoolSum = avgNumerator;
-            //        }
-            //    }
-            //}
-
-            string filePath = "C:\\Users\\xarda\\Downloads\\Kutno_HackSQL\\Kutno_HackSQL\\SIO30.09.2022.xml"; // Replace with the path to your XML file
-
-            try
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(filePath);
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to read the first worksheet
 
-                // Assuming your XML structure has nodes representing schools or establishments
-                XmlNodeList schoolNodes = xmlDoc.SelectNodes("//SchoolNode"); // Replace with the appropriate XPath query
+                List<string> filteredData = new List<string>();
 
-                foreach (XmlNode schoolNode in schoolNodes)
+                for (int row = 7; row <= worksheet.Dimension.End.Row; row++)
                 {
-                    string establishmentType = schoolNode.SelectSingleNode("EstablishmentType").InnerText;
+                    string establishmentType = worksheet.Cells[row, 11].Text;
 
                     if (establishmentType.Equals("Szkoła podstawowa", StringComparison.OrdinalIgnoreCase))
                     {
                         decimal avgNumerator = 0;
-                        decimal studentCount = Math.Round(decimal.Parse(schoolNode.SelectSingleNode("StudentCount").InnerText));
+                        decimal studentCount = Math.Round(decimal.Parse(worksheet.Cells[row, 34].Text));
 
-                        // Update missing student count (You need to implement _applicationDataStore.Schools)
-                        // _applicationDataStore.Schools.FirstOrDefault(x => x.Name == schoolNode.SelectSingleNode("Name").InnerText).StudentCount = studentCount;
+                        // Update missing student count
+                        School school = _applicationDataStore.Schools.FirstOrDefault(x => x.Name == worksheet.Cells[row, 12].Text);
+                        school.StudentCount = studentCount;
 
-                        XmlNodeList dataNodes = schoolNode.SelectNodes("Data/Value"); // Assuming your data is stored within Value nodes
-
-                        foreach (XmlNode dataNode in dataNodes)
+                        for (int col = 38; col <= 129; col++) // Columns AL to DY
                         {
-                            string header = dataNode.SelectSingleNode("Header").InnerText;
+                            string header = worksheet.Cells[6, col].Text;
 
                             decimal weight = WeightsDictionaries.GetWeight(header);
 
-                            decimal pCount = decimal.Parse(dataNode.SelectSingleNode("Value").InnerText);
+                            decimal pCount = decimal.Parse(worksheet.Cells[row, col].Text);
 
                             avgNumerator += (pCount * weight * moneyPerStudent);
                         }
@@ -171,12 +132,11 @@ namespace Application.Services
                         decimal avgPerStudent = avgNumerator / studentCount;
 
                         decimal schoolSum = avgNumerator;
+
+                        school.AvgMoneyPerStudent = avgPerStudent;
+                        school.SumOfMoney = schoolSum;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }

@@ -40,8 +40,6 @@ namespace Application.ViewModels
         private async Task SaveBober()
         {
             var qwe = _serviceProvider.GetRequiredService<IImportDataService>();
-            qwe.ImportExamsData();
-            qwe.ImportSioData();
         }
 
         private void OpenPopup()
