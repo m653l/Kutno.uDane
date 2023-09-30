@@ -121,7 +121,7 @@ namespace Application.ViewModels
         private void SetUpChart()
         {
             _paints = Enumerable.Range(0, _applicationDataStore.Schools.Count)
-            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i].AsSKColor()))
+            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i%ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
             .ToArray();
 
             for (int i = 0; i < _applicationDataStore.Schools.Count; i++)
