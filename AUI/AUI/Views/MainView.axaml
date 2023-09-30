@@ -9,16 +9,11 @@
 			 xmlns:v="using:AUI.Views"
 			 helpers:ViewModelLocator.AutoWireViewModel="True"
              x:Class="AUI.Views.MainView">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<RowDefinition Height="auto" />
-			<RowDefinition Height="*" />
-		</Grid.ColumnDefinitions>
-		
+	<Grid ColumnDefinitions="Auto, *">
 		<views:ShellView />
-		<ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" x:CompileBindings="False"/>
+		<ContentControl Margin="10" Grid.Column="1" Content="{Binding CurrentViewModel}" x:CompileBindings="False"/>
 
-		<Grid Grid.Row="1">
+		<Grid Grid.ColumnSpan="2">
 			<Rectangle
                 Fill="Gray"
                 Opacity="0.8"

@@ -5,11 +5,27 @@
              mc:Ignorable="d" d:DesignWidth="40" d:DesignHeight="500"
              x:Class="AUI.Views.ShellView"
 			 Background="{StaticResource Gray11}">
-	<StackPanel HorizontalAlignment="Center" Margin="3">
+	<StackPanel HorizontalAlignment="Center" Margin="5">
 		<Button Classes="Toolbar" 
 				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center">
+				VerticalContentAlignment="Center"
+				Command="{Binding GoToDashboardCommand}">
 			<PathIcon Data="{StaticResource apps_list_regular}"/>
+		</Button>
+		<Button Classes="Toolbar"
+				Margin="0 5 0 0"
+				Command="{Binding GoToPlotterCommand}">
+			<PathIcon Data="{StaticResource data_scatter_regular}"/>
+		</Button>
+		<Button Classes="Toolbar"
+				Margin="0 5 0 0"
+				Command="{Binding GoToSummaryCommand}">
+			<PathIcon Data="{StaticResource organization_regular}"/>
+		</Button>
+		<Button Classes="Toolbar"
+				Margin="0 5 0 0"
+				Command="{Binding GoToSettingsCommand}">
+			<PathIcon Data="{StaticResource settings_regular}"/>
 		</Button>
 	</StackPanel>
 </UserControl>
