@@ -173,7 +173,7 @@ namespace Application.Services
                     if (school is null || worksheet.Cells[row, 35].Text == "")
                         continue;
 
-                    school.Expens += decimal.Parse(worksheet.Cells[row, 35].Text);
+                    school.Expenses += decimal.Parse(worksheet.Cells[row, 35].Text);
                 }
             }
 
