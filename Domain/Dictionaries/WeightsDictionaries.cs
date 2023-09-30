@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Dictionaries
+﻿namespace Domain.Dictionaries
 {
-    public class WeightsDictionaries
+    public static class WeightsDictionaries
     {
-        private Dictionary<string, decimal> Weights = new Dictionary<string, decimal>
+        private static Dictionary<string, decimal> Weights = new Dictionary<string, decimal>
         {
             { "P1", 0.40M },
             { "P2", 0.20M },
@@ -113,7 +107,7 @@ namespace Domain.Dictionaries
             { "P90", 0.18M },
         };
 
-        public decimal GetWeight(string key)
+        public static decimal GetWeight(string key)
         {
             return Weights.Where(x => x.Key == key).FirstOrDefault().Value;
         }

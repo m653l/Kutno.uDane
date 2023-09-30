@@ -41,6 +41,7 @@ namespace Application.ViewModels
         {
             var qwe = _serviceProvider.GetRequiredService<IImportDataService>();
             qwe.ImportExamsData();
+            qwe.ImportSioData();
         }
 
         private void OpenPopup()

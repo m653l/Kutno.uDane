@@ -3,5 +3,6 @@
     public interface IImportDataService
     {
         void ImportExamsData();
+        void ImportSioData();
     }
 }
