@@ -15,6 +15,7 @@
     <None Remove="Assets\fonts\JetBrainsMono-Light.ttf" />
     <None Remove="Assets\fonts\JetBrainsMono-Regular.ttf" />
     <None Remove="Assets\fonts\JetBrainsMono-Thin.ttf" />
+    <None Remove="Assets\logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
