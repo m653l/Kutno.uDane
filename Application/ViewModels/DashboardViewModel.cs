@@ -130,13 +130,15 @@ namespace Application.ViewModels
         private void SetUpChart()
         {
             _paints = Enumerable.Range(0, _applicationDataStore.Schools.Count)
-            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i%ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
-            .ToArray();
+                .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i%ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
+                .ToArray();
 
             for (int i = 0; i < _applicationDataStore.Schools.Count; i++)
             {
                 SchoolsInfo.Add(new PilotInfo(_applicationDataStore.Schools[i].Name, (double)_applicationDataStore.Schools[i].StudentCount, _paints[i]));
             }
+
+            Series[0].Values = SchoolsInfo.OrderBy(i => i.Value).ToList();
 
             OnPropertyChanged(nameof(SchoolsInfo));
             OnPropertyChanged(nameof(Series));
