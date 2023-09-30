@@ -12,6 +12,6 @@
         public decimal SumOfMoney { get; set; }
 
         public decimal Income { get; set; } = 0;
-        public decimal Expens { get; set; } = 0;
+        public decimal Expenses { get; set; } = 0;
     }
 }
