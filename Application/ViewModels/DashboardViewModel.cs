@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Domain.Aggregates;
 using LiveChartsCore;
 using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
@@ -35,7 +34,7 @@ namespace Application.ViewModels
         private Axis[] _xAxes = { new Axis { SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220)) } };
 
         [ObservableProperty]
-        private Axis[] _yAxes = { new Axis { IsVisible = false } };
+        private Axis[] _yAxes = { new Axis { IsVisible = false, } };
 
         [ObservableProperty]
         private string _sioFilePath = string.Empty;
