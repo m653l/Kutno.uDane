@@ -83,7 +83,7 @@ namespace Application.ViewModels
                 //// Reads all the content of file as a text.
                 //var fileContent = await streamReader.ReadToEndAsync();
 
-                return files[0].Path.ToString().Replace("file://", "");
+                return files[0].Path.ToString().Replace("file:///", "");
             }
 
             return string.Empty;
