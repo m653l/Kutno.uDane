@@ -1,0 +1,43 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<UniformGrid>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource ThemeColor}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Success}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Danger}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray1}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray2}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray3}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray4}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray5}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray6}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray7}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray8}"/>
+				<Rectangle Width="50" Height="50" Fill="{StaticResource Gray9}"/>
+			</UniformGrid>
+		</Border>
+	</Design.PreviewWith>
+
+	<!-- Add Styles Here -->
+	<Style>
+		<Style.Resources>
+			<!-- Foreground Colors -->
+			<SolidColorBrush x:Key="ThemeColor" Color="#ff0044"/>
+			<SolidColorBrush x:Key="Success" Color="#198754"/>
+			<SolidColorBrush x:Key="Danger" Color="#DC3545"/>
+			<SolidColorBrush x:Key="White" Color="#ffffff"/>
+
+			<!-- Background Colors -->
+			<SolidColorBrush x:Key="Gray1" Color="#101010"/>
+			<SolidColorBrush x:Key="Gray2" Color="#181818"/>
+			<SolidColorBrush x:Key="Gray3" Color="#282828"/>
+			<SolidColorBrush x:Key="Gray4" Color="#303030"/>
+			<SolidColorBrush x:Key="Gray5" Color="#383838"/>
+			<SolidColorBrush x:Key="Gray6" Color="#404040"/>
+			<SolidColorBrush x:Key="Gray7" Color="#505050"/>
+			<SolidColorBrush x:Key="Gray8" Color="#909090"/>
+			<SolidColorBrush x:Key="Gray9" Color="#B0B0B0"/>
+		</Style.Resources>
+	</Style>
+</Styles>

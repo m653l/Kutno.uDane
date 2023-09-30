@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:controls="using:AUI.Views.Controls"
+			 xmlns:views="using:AUI.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:helpers="using:AUI.Views.Helpers"
+			 xmlns:v="using:AUI.Views"
+			 helpers:ViewModelLocator.AutoWireViewModel="True"
+             x:Class="AUI.Views.MainView">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		
+		<views:ShellView />
+		<ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" x:CompileBindings="False"/>
+
+		<Grid Grid.Row="1">
+			<Rectangle
+                Fill="Gray"
+                Opacity="0.8"
+                IsVisible="{Binding IsAnyPopupOpen}" />
+
+			<ItemsControl ItemsSource="{Binding Popups}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<Grid />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<controls:PopupControl DataContext="{Binding}" />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+		</Grid>
+	</Grid>
+</UserControl>
