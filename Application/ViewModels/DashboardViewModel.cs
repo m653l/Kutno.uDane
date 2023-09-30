@@ -22,7 +22,7 @@ namespace Application.ViewModels
         {
             Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
-        public ObservableCollection<PilotInfo> SchoolsInfo { get; set; }
+        public ObservableCollection<PilotInfo> SchoolsInfo { get; set; } = new();
 
         [ObservableProperty]
         private RowSeries<PilotInfo> _series;
@@ -45,10 +45,11 @@ namespace Application.ViewModels
 
         private readonly IImportDataService _importDataService;
         private readonly ApplicationDataStore _applicationDataStore;
-        public DashboardViewModel(IServiceProvider serviceProvider, IImportDataService importDataService) : base(serviceProvider)
+        public DashboardViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService) : base(serviceProvider)
         {
             Types.Add(XmlType);
 
+            _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
 
             Series = new RowSeries<PilotInfo>
@@ -88,6 +89,7 @@ namespace Application.ViewModels
             _importDataService.ImportExamsData(SchoolsFilePath);
             _importDataService.ImportSioData(SioFilePath);
             _importDataService.ImportIncome(IncomesFilePath);
+            _importDataService.ImportExpenses(ExpensesFilePath);
             SetUpChart();
         }
 
