@@ -39,7 +39,8 @@ namespace Application.ViewModels
 
         private async Task SaveBober()
         {
-            await _mediator.Send(new SaveMainBeaverCommand(this));
+            var qwe = _serviceProvider.GetRequiredService<IImportDataService>();
+            qwe.ImportExamsData();
         }
 
         private void OpenPopup()

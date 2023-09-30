@@ -1,7 +1,12 @@
-﻿namespace Application.Stores
+﻿using Domain.Aggregates;
+
+namespace Application.Stores
 {
     public class ApplicationDataStore
     {
-        public List<string> ExamsResult { get; set; } = new();
+        // Raw data
+        public List<School> Schools { get; set; } = new();
+
+
     }
 }
