@@ -3,8 +3,6 @@ using Application.Stores;
 using Domain.Aggregates;
 using Domain.Dictionaries;
 using OfficeOpenXml;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace Application.Services
 {
@@ -155,13 +153,31 @@ namespace Application.Services
                     school.Income += decimal.Parse(worksheet.Cells[row, 33].Text);
                 }
             }
-
-            _applicationDataStore.Schools.ToString();
         }
 
-        public void ImportExpenses()
+        public void ImportExpenses(string filePath)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to read the first worksheet
+
+                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                {
+                    string searchText = worksheet.Cells[row, 17].Text.ToUpper();
+                    School? school = string.IsNullOrEmpty(searchText)
+                        ? null
+                        : _applicationDataStore.Schools.FirstOrDefault(x => x.Name.Contains(searchText));
+
+                    if (school is null || worksheet.Cells[row, 35].Text == "")
+                        continue;
+
+                    school.Expens += decimal.Parse(worksheet.Cells[row, 35].Text);
+                }
+            }
+
+            _applicationDataStore.Schools.ToString();
         }
     }
 }
