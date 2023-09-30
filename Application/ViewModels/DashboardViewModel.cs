@@ -60,8 +60,8 @@ namespace Application.ViewModels
         [RelayCommand]
         public async Task ReadData()
         {
-            _importDataService.ImportSioData(SioFilePath);
             _importDataService.ImportExamsData(SchoolsFilePath);
+            _importDataService.ImportSioData(SioFilePath);
         }
 
         private async Task<string> PickFileAsync(Control view)
