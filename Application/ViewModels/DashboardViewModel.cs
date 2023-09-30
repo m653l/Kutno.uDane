@@ -6,6 +6,7 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Domain.Aggregates;
+using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -52,7 +53,7 @@ namespace Application.ViewModels
             _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
 
-            Series = new RowSeries<PilotInfo>
+            Series = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
                 Values = SchoolsInfo,
                 DataLabelsPaint = new SolidColorPaint(new SKColor(245, 245, 245)),
@@ -61,7 +62,12 @@ namespace Application.ViewModels
                 DataLabelsFormatter = point => $"{point.Model!.Name} {point.Coordinate.PrimaryValue}",
                 MaxBarWidth = 50,
                 Padding = 10,
-            };
+            }.OnPointMeasured(point =>
+            {
+                // assign a different color to each point
+                if (point.Visual is null) return;
+                point.Visual.Fill = point.Model!.Paint;
+            });
         }
         [RelayCommand]
         public async Task PickSio(Control view)
