@@ -14,7 +14,8 @@
 		<StackPanel VerticalAlignment="Center">
 			<TextBlock
                 HorizontalAlignment="Center"
-				TextDecorations="Baseline"
+				FontWeight="Bold"
+				FontSize="24"
                 Text="{Binding Title}" />
 			<ScrollViewer MaxHeight="300" Margin="0 20">
 				<TextBlock
@@ -26,11 +27,13 @@
 		</StackPanel>
 
 		<Button
+			Padding="10"
             Grid.Row="2"
             Width="200"
-            Height="30"
+			FontWeight="Bold"
+			HorizontalContentAlignment="Center"
             HorizontalAlignment="Center"
             Command="{Binding ClosePopupCommand}"
-            Content="Ok" />
+            Content="OK" />
 	</Grid>
 </UserControl>

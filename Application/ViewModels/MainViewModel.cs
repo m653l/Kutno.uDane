@@ -58,7 +58,7 @@ namespace Application.ViewModels
 
         internal void SwitchToDefaultView()
         {
-            _navigation.NavigateTo<BoberViewModel>();
+            _navigation.NavigateTo<DashboardViewModel>();
         }
     }
 }

@@ -5,18 +5,26 @@
 			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.PlotterView">
-	<TabControl Margin="5" >
-		<TabItem Name="tab1" Header="Saldo">
-			<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}"/>
-		</TabItem>
-		<TabItem Name="tab2" Header="Saldo na ucznia">
-			<lvc:CartesianChart Name="chart2" Series="{Binding SaldosPerStudentSeries}"/>
-		</TabItem>
-		<TabItem  Name="tab3" Header="Staniny">
-			<lvc:CartesianChart Name="chart3" Series="{Binding StalinSeries}"/>
-		</TabItem>
-		<TabItem  Name="tab4" Header="Wzkaźnik">
-			<lvc:CartesianChart Name="chart4" Series="{Binding CostPerStalinSeries}"/>
-		</TabItem>
-	</TabControl>
+	<Grid>
+		<TabControl Margin="5" SelectedIndex="{Binding SelectedIndex}">
+			<TabItem Name="tab1" Header="Saldo">
+				<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}"/>
+			</TabItem>
+			<TabItem Name="tab2" Header="Saldo na ucznia">
+				<lvc:CartesianChart Name="chart2" Series="{Binding SaldosPerStudentSeries}"/>
+			</TabItem>
+			<TabItem  Name="tab3" Header="Staniny">
+				<lvc:CartesianChart Name="chart3" Series="{Binding StalinSeries}"/>
+			</TabItem>
+			<TabItem  Name="tab4" Header="Wzkaźnik">
+				<lvc:CartesianChart Name="chart4" Series="{Binding CostPerStalinSeries}"/>
+			</TabItem>
+		</TabControl>
+
+		<Border HorizontalAlignment="Right" VerticalAlignment="Top">
+			<Button Margin="10" Command="{Binding OpenInfoPopupCommand}">
+				<PathIcon Data="{StaticResource window_new_regular}"/>
+			</Button>
+		</Border>
+	</Grid>
 </UserControl>
