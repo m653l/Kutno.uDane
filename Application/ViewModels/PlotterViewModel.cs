@@ -34,6 +34,8 @@ namespace Application.ViewModels
         [ObservableProperty]
         private Axis[] _yAxes = { new Axis { IsVisible = false, } };
 
+        public IRelayCommand OpenInfoPopupCommand { get; set; }
+
         private readonly ApplicationDataStore _applicationDataStore;
         private readonly IPopupService _popupService;
         public PlotterViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IPopupService popupService) : base(serviceProvider)
