@@ -32,19 +32,21 @@ namespace Application.ViewModels
         private readonly IImportDataService _importDataService;
         private readonly IPopupService _popupService;
         private readonly ApplicationDataStore _applicationDataStore;
+        private readonly ShellViewModel _shellViewModel;
         private readonly IServiceProvider _serviceProvider;
-        public DashboardViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService, IPopupService popupService) : base(serviceProvider)
+        public DashboardViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService, IPopupService popupService, ShellViewModel shellViewModel) : base(serviceProvider)
         {
             _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
             _popupService = popupService;
             _serviceProvider = serviceProvider;
+            _shellViewModel = shellViewModel;
         }
 
         [RelayCommand]
         public void AddNewYearCommand()
         {
-            Years.Add(new YearViewModel(_applicationDataStore, _serviceProvider, _importDataService, _popupService));
+            Years.Add(new YearViewModel(_applicationDataStore, _serviceProvider, _importDataService, _popupService, _shellViewModel));
         }
     }
 }
