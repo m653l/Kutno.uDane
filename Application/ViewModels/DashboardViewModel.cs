@@ -1,6 +1,7 @@
 ﻿using Application.Models;
 using Application.Services.Interfaces;
 using Application.Stores;
+using Application.ViewModels.Controls;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,6 +12,7 @@ using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.Themes;
+using Microsoft.Extensions.DependencyInjection;
 using SkiaSharp;
 using System.Collections.ObjectModel;
 
@@ -51,13 +53,15 @@ namespace Application.ViewModels
         SolidColorPaint[] _paints;
 
         private readonly IImportDataService _importDataService;
+        private readonly IPopupService _popupService;
         private readonly ApplicationDataStore _applicationDataStore;
-        public DashboardViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService) : base(serviceProvider)
+        public DashboardViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService, IPopupService popupService) : base(serviceProvider)
         {
             Types.Add(XmlType);
 
             _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
+            _popupService = popupService;
 
             var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
@@ -107,11 +111,18 @@ namespace Application.ViewModels
         [RelayCommand]
         public async Task ReadData()
         {
-            _importDataService.ImportExamsData(SchoolsFilePath);
-            _importDataService.ImportSioData(SioFilePath);
-            _importDataService.ImportIncome(IncomesFilePath);
-            _importDataService.ImportExpenses(ExpensesFilePath);
-            SetUpChart();
+            if (SioFilePath is "" || SchoolsFilePath is "" || ExpensesFilePath is "" || IncomesFilePath is "")
+            {
+                ErrorDialogViewModel vm = _serviceProvider.GetRequiredService<ErrorDialogViewModel>();
+                vm.Title = "Błąd walidacji";
+                vm.Message = "Aby kontynuować wybierz wszystkie pliki!";
+                _popupService.OpenPopup(vm);
+            }
+            else
+            {
+                _importDataService.ImportData(SioFilePath, SchoolsFilePath, ExpensesFilePath, IncomesFilePath);
+                SetUpChart();
+            }
         }
 
         private async Task<string> PickFileAsync(Control view)

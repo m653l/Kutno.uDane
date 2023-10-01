@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" Width="800" Height="450"
+			 Background="White"
+             x:Class="AUI.Views.Controls.ErrorDialogView">
+	<Grid Margin="20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="330" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<StackPanel VerticalAlignment="Center">
+			<TextBlock
+                HorizontalAlignment="Center"
+				TextDecorations="Baseline"
+                Text="{Binding Title}" />
+			<ScrollViewer MaxHeight="300" Margin="0 20">
+				<TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="{Binding Message}"
+                    TextWrapping="WrapWithOverflow" />
+			</ScrollViewer>
+		</StackPanel>
+
+		<Button
+            Grid.Row="2"
+            Width="200"
+            Height="30"
+            HorizontalAlignment="Center"
+            Command="{Binding ClosePopupCommand}"
+            Content="Ok" />
+	</Grid>
+</UserControl>

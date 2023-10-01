@@ -16,7 +16,7 @@ namespace Application.Services
             _applicationDataStore = applicationDataStore;
         }
 
-        public void ImportExamsData(string filePath)
+        private void ImportExamsData(string filePath)
         {
             (int min, int max)[] StaninBordersPolish = CalculateStanin(filePath, 12, 13);
             (int min, int max)[] StaninBordersMath = CalculateStanin(filePath, 17, 18);
@@ -95,7 +95,7 @@ namespace Application.Services
             }
         }
 
-        public void ImportSioData(string filePath)
+        private void ImportSioData(string filePath)
         {
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -139,7 +139,7 @@ namespace Application.Services
             }
         }
 
-        public void ImportIncome(string filePath)
+        private void ImportIncome(string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -162,7 +162,7 @@ namespace Application.Services
             }
         }
 
-        public void ImportExpenses(string filePath)
+        private void ImportExpenses(string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -310,6 +310,14 @@ namespace Application.Services
 
                 return sus;
             }
+        }
+
+        public void ImportData(string sioPath, string examPath, string expenses, string incomesPath)
+        {
+            ImportExamsData(examPath);
+            ImportSioData(sioPath);
+            ImportIncome(incomesPath);
+            ImportExpenses(examPath);
         }
     }
 }
