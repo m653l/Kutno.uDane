@@ -82,8 +82,8 @@ namespace Application.ViewModels
 
             for (int i = 0; i < applicationDataStore.ActiveYear.Schools.Count; i++)
             {
-                saldos.Add(new PilotInfo(applicationDataStore.ActiveYear.Schools[i].Name, (double)applicationDataStore.ActiveYear.Schools[i].Saldo(), _paints[i]));
-                saldosPerStudent.Add(new PilotInfo(applicationDataStore.ActiveYear.Schools[i].Name, (double)applicationDataStore.ActiveYear.Schools[i].SaldoPerStudent(), _paints[i]));
+                saldos.Add(new PilotInfo(applicationDataStore.ActiveYear.Schools[i].Name, (double)applicationDataStore.ActiveYear.Schools[i].GetSaldo(), _paints[i]));
+                saldosPerStudent.Add(new PilotInfo(applicationDataStore.ActiveYear.Schools[i].Name, (double)applicationDataStore.ActiveYear.Schools[i].GetSaldoPerStudent(), _paints[i]));
                 stalin.Add( new PilotInfo(applicationDataStore.ActiveYear.Schools[i].Name, (double)applicationDataStore.ActiveYear.Schools[i].GetTrzyStaliny(), _paints[i]));
                 costPerStalin.Add( new PilotInfo(applicationDataStore.ActiveYear.Schools[i].Name, (double)applicationDataStore.ActiveYear.Schools[i].GetCostPerStanin(), _paints[i]));
             }

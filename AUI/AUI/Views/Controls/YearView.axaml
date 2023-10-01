@@ -17,6 +17,7 @@
 					<Grid ColumnDefinitions="0.5*, *, *, 0.5*" Margin="10 0">
 						<Label Grid.Column="1" Content="Nazwa Zestawienia dla Roku: "/>
 						<TextBox Grid.Column="2" Text="{Binding Name}" Margin="10 5"/>
+						<DatePicker Grid.Column="3" SelectedDate="{Binding Date}"/>
 					</Grid>
 					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
 						<Label Grid.Column="0" Content="Wybierz plik SIO: "/>
