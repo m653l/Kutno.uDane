@@ -25,17 +25,22 @@
 				</ItemsControl>
 				<Button HorizontalAlignment="Stretch"
 						Height="50"
+						Margin="10 0 10 0"
 						Background="{StaticResource Gray11}"
 						Command="{Binding AddNewYearCommand}">
-					<Label Content="Add new year"/>
+					<Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add new year"/>
 				</Button>
 			</StackPanel>
 		</ScrollViewer>
 		<Button Margin="20" 
+				Classes="accent"
 				Command="{Binding AnalyzeDataCommand}"
-				VerticalAlignment="Bottom" 
+				VerticalAlignment="Bottom"
+				Padding="10"
+				CornerRadius="10"
+				Background="{StaticResource Success}"
 				HorizontalAlignment="Right">
-			<PathIcon Data="{StaticResource window_new_regular}"/>
+			<PathIcon Width="30" Height="30" Data="{StaticResource window_new_regular}"/>
 		</Button>
 	</Grid>
 </UserControl>

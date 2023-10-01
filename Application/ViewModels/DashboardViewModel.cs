@@ -29,6 +29,8 @@ namespace Application.ViewModels
             }
         }
 
+        public IRelayCommand AnalyzeDataCommand { get; set; }
+
         private readonly IImportDataService _importDataService;
         private readonly IPopupService _popupService;
         private readonly ApplicationDataStore _applicationDataStore;
@@ -36,6 +38,8 @@ namespace Application.ViewModels
         private readonly IServiceProvider _serviceProvider;
         public DashboardViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService, IPopupService popupService, ShellViewModel shellViewModel) : base(serviceProvider)
         {
+            AnalyzeDataCommand = new RelayCommand(AnalyzeData);
+
             _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
             _popupService = popupService;
@@ -47,6 +51,21 @@ namespace Application.ViewModels
         public void AddNewYearCommand()
         {
             Years.Add(new YearViewModel(_applicationDataStore, _serviceProvider, _importDataService, _popupService, _shellViewModel));
+        }
+
+        private void AnalyzeData()
+        {
+            foreach (YearViewModel? year in Years)
+            {
+                if (year is null) 
+                { 
+                    continue; 
+                }
+                else
+                {
+                    year.ReadData();
+                }
+            }
         }
     }
 }

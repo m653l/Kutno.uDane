@@ -23,10 +23,10 @@
 
 		<Border HorizontalAlignment="Right" VerticalAlignment="Top">
 			<StackPanel Orientation="Horizontal">
-				<ComboBox Margin="10 10 0 10" SelectedIndex="{Binding SelectedIndexCombo}">
+				<ComboBox Margin="10 10 0 10" SelectedIndex="{Binding SelectedIndexCombo}" ItemsSource="{Binding Years}">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
-							<TextBlock Text="{Binding Years.Name}" />
+							<TextBlock Text="{Binding Name}" />
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
 				</ComboBox>

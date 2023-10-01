@@ -114,7 +114,6 @@ namespace Application.ViewModels.Controls
             IncomesFilePath = await PickFileAsync(view);
         }
 
-        [RelayCommand]
         public async Task ReadData()
         {
             if (SioFilePath is "" || SchoolsFilePath is "" || ExpensesFilePath is "" || IncomesFilePath is "")
