@@ -5,50 +5,59 @@
 			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.Controls.YearView">
-	<Grid RowDefinitions="Auto *">
-		<StackPanel Grid.Row="0">
-			<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
-				<Label Grid.Column="0" Content="Wybierz plik SIO: "/>
-				<TextBox Grid.Column="1" Text="{Binding SioFilePath}" Margin="10 5"/>
-				<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
-						Command="{Binding PickSioCommand}"
-						CommandParameter="{Binding $parent[UserControl]}"/>
-			</Grid>
-			<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
-				<Label Grid.Column="0" Content="Wybierz plik szkół: "/>
-				<TextBox Grid.Column="1" Text="{Binding SchoolsFilePath}" Margin="10 5"/>
-				<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
-						Command="{Binding PickSchoolsCommand}"
-						CommandParameter="{Binding $parent[UserControl]}"/>
-			</Grid>
-			<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
-				<Label Grid.Column="0" Content="Wybierz plik wydatków: "/>
-				<TextBox Grid.Column="1" Text="{Binding ExpensesFilePath}" Margin="10 5"/>
-				<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
-						Command="{Binding PickExpensesCommand}"
-						CommandParameter="{Binding $parent[UserControl]}"/>
-			</Grid>
-			<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
-				<Label Grid.Column="0" Content="Wybierz plik dochodów: "/>
-				<TextBox Grid.Column="1" Text="{Binding IncomesFilePath}" Margin="10 5"/>
-				<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
-						Command="{Binding PickIncomesCommand}"
-						CommandParameter="{Binding $parent[UserControl]}"/>
-			</Grid>
-			<StackPanel Orientation="Horizontal" Margin="10">
-				<Button	Content="Analizuj Dane"
-						Classes="analize"
-						Command="{Binding ReadDataCommand}"/>
+	<Grid HorizontalAlligment="Stretch">
+		<Expander MaxWidth="100000" Margin="10" HorizontalContentAligment="Stretch" HorizontalAligment="Stretch">
+			<Expander.Header MaxWidth="100000" HorizontalContentAligment="Stretch" HorizontalAligment="Stretch">
+				<StackPanel Orientation="Horizontal">
+					<Label Content="{Binding Name}"/>
+				</StackPanel>
+			</Expander.Header>
+			<Grid RowDefinitions="Auto *">
+				<StackPanel Grid.Row="0">
+					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
+						<Label Grid.Column="0" Content="Wybierz plik SIO: "/>
+						<TextBox Grid.Column="1" Text="{Binding SioFilePath}" Margin="10 5"/>
+						<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
+								Command="{Binding PickSioCommand}"
+								CommandParameter="{Binding $parent[UserControl]}"/>
+					</Grid>
+					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
+						<Label Grid.Column="0" Content="Wybierz plik szkół: "/>
+						<TextBox Grid.Column="1" Text="{Binding SchoolsFilePath}" Margin="10 5"/>
+						<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
+								Command="{Binding PickSchoolsCommand}"
+								CommandParameter="{Binding $parent[UserControl]}"/>
+					</Grid>
+					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
+						<Label Grid.Column="0" Content="Wybierz plik wydatków: "/>
+						<TextBox Grid.Column="1" Text="{Binding ExpensesFilePath}" Margin="10 5"/>
+						<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
+								Command="{Binding PickExpensesCommand}"
+								CommandParameter="{Binding $parent[UserControl]}"/>
+					</Grid>
+					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
+						<Label Grid.Column="0" Content="Wybierz plik dochodów: "/>
+						<TextBox Grid.Column="1" Text="{Binding IncomesFilePath}" Margin="10 5"/>
+						<Button Grid.Column="2" Classes="browse" Content="Przeglądaj..."
+								Command="{Binding PickIncomesCommand}"
+								CommandParameter="{Binding $parent[UserControl]}"/>
+					</Grid>
+					<StackPanel Orientation="Horizontal" Margin="10">
+						<Button	Content="Analizuj Dane"
+								Classes="analize"
+								Command="{Binding ReadDataCommand}"/>
 
-				<TextBlock Margin="10 5 0 0">Ilość uczniów:</TextBlock>
-			</StackPanel>
+						<TextBlock Margin="10 5 0 0">Ilość uczniów:</TextBlock>
+					</StackPanel>
 
-		</StackPanel>
-		<lvc:CartesianChart Grid.Row="1"
-							Series="{Binding Series}"
-							XAxes="{Binding XAxes}"
-							YAxes="{Binding YAxes}"
-							ZoomMode="Both">
-		</lvc:CartesianChart>
+				</StackPanel>
+				<lvc:CartesianChart Grid.Row="1"
+									Series="{Binding Series}"
+									XAxes="{Binding XAxes}"
+									YAxes="{Binding YAxes}"
+									ZoomMode="Both">
+				</lvc:CartesianChart>
+			</Grid>
+		</Expander>
 	</Grid>
 </UserControl>

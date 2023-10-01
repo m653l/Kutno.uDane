@@ -15,25 +15,20 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.Themes;
 using Microsoft.Extensions.DependencyInjection;
 using SkiaSharp;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.ViewModels.Controls
 {
     public partial class YearViewModel : CoreViewModel
     {
         public static List<FilePickerFileType> Types = new List<FilePickerFileType>();
-
         public static FilePickerFileType XmlType { get; } = new("All Images")
         {
             Patterns = new[] { "*.xml", "*.xlsx", "*.xlsm" }
         };
-
         public ObservableCollection<PilotInfo> SchoolsInfo { get; set; } = new();
+        [ObservableProperty]
+        private string _name;
         [ObservableProperty]
         private ISeries[] _series;
 
@@ -69,6 +64,8 @@ namespace Application.ViewModels.Controls
             _applicationDataStore = applicationDataStore;
             _importDataService = importDataService;
             _popupService = popupService;
+
+            Name = DateTime.Now.Year.ToString();
 
             var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
