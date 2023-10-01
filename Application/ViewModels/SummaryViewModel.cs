@@ -45,13 +45,13 @@ namespace Application.ViewModels
             {
                 if (BestCostPerStaninIncreaseDifference == null || BestCostPerStaninIncrease == null)
                 {
-                    BestCostPerStaninIncreaseDifference = decimal.Round(yearsByDate[i + 1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin, 2);
+                    BestCostPerStaninIncreaseDifference = decimal.Round(yearsByDate[1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin, 2);
                     BestCostPerStaninIncrease = yearsByDate[0].Schools[i];
                 }
 
                 if (yearsByDate[count - 1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin > BestCostPerStaninIncreaseDifference)
                 {
-                    BestCostPerStaninIncreaseDifference = decimal.Round(yearsByDate[i + 1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin, 2);
+                    BestCostPerStaninIncreaseDifference = decimal.Round(yearsByDate[1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin, 2);
                     BestCostPerStaninIncrease = yearsByDate[0].Schools[i];
                 }
             }
