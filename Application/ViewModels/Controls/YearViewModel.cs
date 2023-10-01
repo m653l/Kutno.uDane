@@ -30,7 +30,7 @@ namespace Application.ViewModels.Controls
         [ObservableProperty]
         private string _name;
         [ObservableProperty]
-        private DateTimeOffset _date;
+        private DateTimeOffset _date = DateTimeOffset.Now.Date;
         [ObservableProperty]
         private ISeries[] _series;
 
@@ -68,7 +68,7 @@ namespace Application.ViewModels.Controls
             _importDataService = importDataService;
             _popupService = popupService;
 
-            Name = DateTime.Now.Year.ToString();
+            Name = "Zestawienie z: ";
 
             var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
@@ -118,7 +118,7 @@ namespace Application.ViewModels.Controls
 
         public async Task ReadData()
         {
-            if (SioFilePath is "" || SchoolsFilePath is "" || ExpensesFilePath is "" || IncomesFilePath is "")
+            if (SioFilePath is "" || SchoolsFilePath is "" || ExpensesFilePath is "" || IncomesFilePath is "" || Date == DateTimeOffset.MinValue)
             {
                 ErrorDialogViewModel vm = _serviceProvider.GetRequiredService<ErrorDialogViewModel>();
                 vm.Title = "Błąd walidacji";

@@ -318,7 +318,7 @@ namespace Application.Services
             ImportExamsData(year, examPath);
             ImportSioData(year, sioPath);
             ImportIncome(year, incomesPath);
-            ImportExpenses(year, examPath);
+            ImportExpenses(year, expenses);
         }
     }
 }
