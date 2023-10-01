@@ -68,7 +68,7 @@ namespace AUI
                 singleViewPlatform.MainView = Services.GetRequiredService<MainView>();
             }
 
-            InitializeDatabase();
+            //InitializeDatabase();
 
             base.OnFrameworkInitializationCompleted();
 
@@ -78,7 +78,7 @@ namespace AUI
         private void InitializeDatabase()
         {
             using IServiceScope scope = Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-            scope.ServiceProvider.GetRequiredService<DataContext>().Database.EnsureCreated();
+            //scope.ServiceProvider.GetRequiredService<DataContext>().Database.EnsureCreated();
             ILogger<App> logger = Current.Services.GetRequiredService<ILogger<App>>();
         }
 
