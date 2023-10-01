@@ -24,12 +24,12 @@ namespace Application.ViewModels
         {
             var yearsByDate = _applicationDataStore.Years.OrderByDescending(i => i.Date);
 
-            yearsByDate[0].
+            //yearsByDate[0].
 
-            for (int i = 0; i < length; i++)
-            {
+            //for (int i = 0; i < length; i++)
+            //{
 
-            }
+            //}
             
 
 
