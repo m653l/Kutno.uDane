@@ -22,7 +22,16 @@ namespace Application.ViewModels
         
         public void CalculateBestCostPerStaninIncrease()
         {
-            //var newestCostPerStanin = _applicationDataStore.Years.Where(x => x)
+            var yearsByDate = _applicationDataStore.Years.OrderByDescending(i => i.Date);
+
+            yearsByDate[0].
+
+            for (int i = 0; i < length; i++)
+            {
+
+            }
+            
+
 
             //for (int i = 0; i < _applicationDataStore.Years.Count; i++)
             //{

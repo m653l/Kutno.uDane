@@ -30,7 +30,7 @@ namespace Application.ViewModels.Controls
         [ObservableProperty]
         private string _name;
         [ObservableProperty]
-        private DateOnly _date;
+        private DateTimeOffset _date;
         [ObservableProperty]
         private ISeries[] _series;
 
