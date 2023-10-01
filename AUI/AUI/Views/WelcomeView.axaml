@@ -12,7 +12,8 @@
 				   HorizontalAlignment="Center"
 				   Margin="0 20"
 				   FontSize="36" />
-		<Button Content="Start" 
+		<Button Content="Rozpocznij" 
+				Classes="browse"
 				Command="{Binding GoNextCommand}"
 				HorizontalAlignment="Center" 
 				FontWeight="ExtraBold" 
