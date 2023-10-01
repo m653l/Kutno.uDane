@@ -1,5 +1,6 @@
 ﻿using Application.Services.Interfaces;
 using Application.Stores;
+using Application.ViewModels.Controls;
 using Domain.Aggregates;
 using Domain.Dictionaries;
 using OfficeOpenXml;
@@ -16,7 +17,7 @@ namespace Application.Services
             _applicationDataStore = applicationDataStore;
         }
 
-        private void ImportExamsData(string filePath)
+        private void ImportExamsData(YearViewModel year, string filePath)
         {
             (int min, int max)[] StaninBordersPolish = CalculateStanin(filePath, 12, 13);
             (int min, int max)[] StaninBordersMath = CalculateStanin(filePath, 17, 18);
@@ -56,7 +57,7 @@ namespace Application.Services
                 {
                     string[] values = item.Split(',');
 
-                    _applicationDataStore.Schools.Add(new Domain.Aggregates.School
+                    year.Schools.Add(new Domain.Aggregates.School
                     {
                         Name = values[0],
                         StudentCount = 0,
@@ -95,7 +96,7 @@ namespace Application.Services
             }
         }
 
-        private void ImportSioData(string filePath)
+        private void ImportSioData(YearViewModel year, string filePath)
         {
             // Set the LicenseContext to suppress the license exception
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -114,7 +115,7 @@ namespace Application.Services
                         decimal studentCount = Math.Round(decimal.Parse(worksheet.Cells[row, 34].Text));
 
                         // Update missing student count
-                        School school = _applicationDataStore.Schools.FirstOrDefault(x => x.Name == worksheet.Cells[row, 12].Text);
+                        School school = year.Schools.FirstOrDefault(x => x.Name == worksheet.Cells[row, 12].Text);
                         school.StudentCount = studentCount;
 
                         for (int col = 38; col <= 129; col++) // Columns AL to DY
@@ -139,7 +140,7 @@ namespace Application.Services
             }
         }
 
-        private void ImportIncome(string filePath)
+        private void ImportIncome(YearViewModel year, string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -152,7 +153,7 @@ namespace Application.Services
                     string searchText = worksheet.Cells[row, 17].Text.ToUpper();
                     School? school = string.IsNullOrEmpty(searchText)
                         ? null
-                        : _applicationDataStore.Schools.FirstOrDefault(x => x.Name.Contains(searchText));
+                        : year.Schools.FirstOrDefault(x => x.Name.Contains(searchText));
 
                     if (school is null || worksheet.Cells[row, 33].Text == "")
                         continue;
@@ -162,7 +163,7 @@ namespace Application.Services
             }
         }
 
-        private void ImportExpenses(string filePath)
+        private void ImportExpenses(YearViewModel year, string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -175,7 +176,7 @@ namespace Application.Services
                     string searchText = worksheet.Cells[row, 17].Text.ToUpper();
                     School? school = string.IsNullOrEmpty(searchText)
                         ? null
-                        : _applicationDataStore.Schools.FirstOrDefault(x => x.Name.Contains(searchText));
+                        : year.Schools.FirstOrDefault(x => x.Name.Contains(searchText));
 
                     if (school is null || worksheet.Cells[row, 35].Text == "")
                         continue;
@@ -184,7 +185,7 @@ namespace Application.Services
                 }
             }
 
-            _applicationDataStore.Schools.ToString();
+            year.Schools.ToString();
         }
 
         private int? GetStanin((int min, int max)[] baseStanin, decimal? avg)
@@ -312,12 +313,12 @@ namespace Application.Services
             }
         }
 
-        public void ImportData(string sioPath, string examPath, string expenses, string incomesPath)
+        public void ImportData(YearViewModel year, string sioPath, string examPath, string expenses, string incomesPath)
         {
-            ImportExamsData(examPath);
-            ImportSioData(sioPath);
-            ImportIncome(incomesPath);
-            ImportExpenses(examPath);
+            ImportExamsData(year, examPath);
+            ImportSioData(year, sioPath);
+            ImportIncome(year, incomesPath);
+            ImportExpenses(year, examPath);
         }
     }
 }

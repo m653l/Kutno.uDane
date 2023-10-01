@@ -4,6 +4,7 @@ using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
+using LiveChartsCore.Themes;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;

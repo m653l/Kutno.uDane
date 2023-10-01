@@ -1,12 +1,16 @@
-﻿using Domain.Aggregates;
+﻿using Application.ViewModels.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Domain.Aggregates;
+using System.Collections.ObjectModel;
 
 namespace Application.Stores
 {
-    public class ApplicationDataStore
+    public partial class ApplicationDataStore: ObservableObject
     {
-        // Raw data
-        public List<School> Schools { get; set; } = new();
-
+        // Raw data (not anymore)
+        public ObservableCollection<YearViewModel> Years { get; set; } = new();
+        [ObservableProperty]
+        private YearViewModel activeYear;
 
     }
 }

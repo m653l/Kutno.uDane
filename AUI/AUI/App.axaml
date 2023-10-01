@@ -12,6 +12,9 @@
 		<DataTemplate DataType="{x:Type viewModels:BoberViewModel}">
 			<views:BoberView />
 		</DataTemplate>
+		<DataTemplate DataType="{x:Type controlsVM:YearViewModel}">
+			<controls:YearView />
+		</DataTemplate>
 		<DataTemplate DataType="{x:Type viewModels:KapibaraViewModel}">
 			<views:KapibaraView />
 		</DataTemplate>
