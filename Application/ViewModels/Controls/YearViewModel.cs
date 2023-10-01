@@ -57,7 +57,8 @@ namespace Application.ViewModels.Controls
         private readonly IImportDataService _importDataService;
         private readonly IPopupService _popupService;
         private readonly ApplicationDataStore _applicationDataStore;
-        public YearViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService, IPopupService popupService) : base(serviceProvider) 
+        private readonly ShellViewModel _shellViewModel;
+        public YearViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider, IImportDataService importDataService, IPopupService popupService, ShellViewModel shellViewModel) : base(serviceProvider)
         {
             Types.Add(XmlType);
 
@@ -86,6 +87,7 @@ namespace Application.ViewModels.Controls
             });
 
             _series = new[] { rowSeries };
+            _shellViewModel = shellViewModel;
         }
 
         [RelayCommand]
@@ -124,6 +126,7 @@ namespace Application.ViewModels.Controls
             }
             else
             {
+                _shellViewModel.ActivateButtons();
                 _importDataService.ImportData(this, SioFilePath, SchoolsFilePath, ExpensesFilePath, IncomesFilePath);
                 SetUpChart();
             }
@@ -156,6 +159,29 @@ namespace Application.ViewModels.Controls
 
         private void SetUpChart()
         {
+            Series[0].Values = Enumerable.Empty<PilotInfo>();
+            SchoolsInfo = new ObservableCollection<PilotInfo>();
+
+            var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
+            {
+                Values = SchoolsInfo,
+                DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0)),
+                DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsSize = 14,
+                DataLabelsMaxWidth = 1000,
+                DataLabelsTranslate = new(-1, 0),
+                DataLabelsFormatter = point => $"{point.Model!.Name}",
+                MaxBarWidth = 5000,
+                Padding = 10,
+            }.OnPointMeasured(point =>
+            {
+                // assign a different color to each point
+                if (point.Visual is null) return;
+                point.Visual.Fill = point.Model!.Paint;
+            });
+
+            _series = new[] { rowSeries };
+
             _paints = Enumerable.Range(0, SchoolsInfo.Count)
             .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i % ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
             .ToArray();
@@ -166,6 +192,8 @@ namespace Application.ViewModels.Controls
             }
 
             Series[0].Values = SchoolsInfo.OrderBy(i => i.Value).ToList();
+
+            _serviceProvider.GetRequiredService<PlotterViewModel>().UpdateCharts();
 
             OnPropertyChanged(nameof(SchoolsInfo));
         }

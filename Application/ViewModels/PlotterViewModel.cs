@@ -11,6 +11,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.Themes;
 using SkiaSharp;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
 
 namespace Application.ViewModels
 {
@@ -25,6 +26,23 @@ namespace Application.ViewModels
                 _selectedIndex = value;
                 OnPropertyChanged();
             }
+        }
+
+        private int _selectedIndexCombo = 0;
+        public int SelectedIndexCombo
+        {
+            get => _selectedIndexCombo;
+            set
+            {
+                _selectedIndexCombo = value;
+                OnPropertyChanged();
+                UpdateChart(value);
+            }
+        }
+
+        public ObservableCollection<YearViewModel> Years
+        {
+            get => _applicationDataStore.Years;
         }
 
         public List<ISeries> SaldosSeries { get; set; }
@@ -47,6 +65,7 @@ namespace Application.ViewModels
         {
             _applicationDataStore = applicationDataStore;
 
+            _applicationDataStore.ActiveYear = _applicationDataStore.Years.FirstOrDefault();
             XAxes[0].Labels = _applicationDataStore.ActiveYear.Schools.Select(i => i.Name).ToList();
 
             var saldos = new List<PilotInfo>();
@@ -182,6 +201,11 @@ namespace Application.ViewModels
             SaldosPerStudentSeries = new List<ISeries> { columnSeries2 };
             StalinSeries = new List<ISeries> { columnSeries3 };
             CostPerStalinSeries = new List<ISeries> { columnSeries4 };
+        }
+
+        private void UpdateChart(int newValue)
+        {
+
         }
 
         private void OpenInfoPopup()
