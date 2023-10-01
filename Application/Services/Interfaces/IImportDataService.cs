@@ -2,9 +2,6 @@
 {
     public interface IImportDataService
     {
-        void ImportExamsData(string filePath);
-        void ImportSioData(string filePath);
-        void ImportIncome(string filePath);
-        void ImportExpenses(string filePath);
+        void ImportData(string sioPath, string examPath, string expenses, string incomesPath);
     }
 }

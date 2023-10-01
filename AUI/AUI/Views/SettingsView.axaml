@@ -17,10 +17,10 @@
 			<RowDefinition Height="Auto"></RowDefinition>
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Margin="20 30 0 0 ">
+		<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
 			<TextBlock FontSize="24">Ustawienia</TextBlock>
 		</StackPanel>
-		<StackPanel Grid.Row="1" Margin="70 20 0 0">
+		<StackPanel Grid.Row="1" Margin="90 20 0 0">
 			
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Margin="10">Motyw Ciemny</TextBlock>
