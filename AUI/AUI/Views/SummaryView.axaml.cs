@@ -8,5 +8,10 @@ namespace AUI.Views
         {
             InitializeComponent();
         }
+
+        public void OnLayoutUpdated()
+        {
+            var dupa = 0;
+        }
     }
 }

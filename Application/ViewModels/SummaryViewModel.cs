@@ -1,5 +1,6 @@
 ﻿using Application.Stores;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Domain.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +12,48 @@ namespace Application.ViewModels
     public partial class SummaryViewModel : CoreViewModel
     {
         [ObservableProperty]
-        Tuple<decimal, string> _bestCostPerStaninIncrease;
+        [NotifyPropertyChangedFor(nameof(BestCostPerStaninSchoolName))]
+        private School _bestCostPerStaninIncrease;
+
+        public string BestCostPerStaninSchoolName
+        {
+            get
+            {
+                return BestCostPerStaninIncrease.Name;
+            }
+        }
+
+        [ObservableProperty]
+        private decimal _bestCostPerStaninIncreaseDifference;
 
         private readonly ApplicationDataStore _applicationDataStore;
         public SummaryViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider) : base(serviceProvider) 
         {
-            applicationDataStore = _applicationDataStore;
+            _applicationDataStore = applicationDataStore;
+            CalculateBestCostPerStaninIncrease();
         }
 
         
         public void CalculateBestCostPerStaninIncrease()
         {
-            var yearsByDate = _applicationDataStore.Years.OrderByDescending(i => i.Date);
+            var yearsByDate = _applicationDataStore.Years.OrderByDescending(i => i.Date).ToArray();
+            var count = yearsByDate.Count();
 
-            yearsByDate[0].
+            if (count < 2) return;
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < yearsByDate[0].Schools.Count; i++)
             {
+                if (BestCostPerStaninIncreaseDifference == null || BestCostPerStaninIncrease == null)
+                {
+                    BestCostPerStaninIncreaseDifference = decimal.Round(yearsByDate[i + 1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin, 2);
+                    BestCostPerStaninIncrease = yearsByDate[0].Schools[i];
+                }
 
+                if (yearsByDate[count - 1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin > BestCostPerStaninIncreaseDifference)
+                {
+                    BestCostPerStaninIncreaseDifference = decimal.Round(yearsByDate[i + 1].Schools[i].CostPerStanin - yearsByDate[0].Schools[i].CostPerStanin, 2);
+                    BestCostPerStaninIncrease = yearsByDate[0].Schools[i];
+                }
             }
             
 

@@ -8,14 +8,18 @@
 		  RowDefinitions="*, 3, *">
 		<Border CornerRadius="5"
 				Margin="5"
+				MinWidth="50"
+				MinHeight="50"
 				Background="{StaticResource Gray12}">
 			<ScrollViewer>
 				<StackPanel>
-					<Label Content="15zł" FontSize="40"
+					<Label Content="{Binding BestCostPerStaninIncreaseDifference}" FontSize="40"
 						   HorizontalContentAlignment="Center" 
 						   Margin="10"/>
-					<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Najlepszy wzkaźnik kosztów na stancję:" />
-					<TextBlock TextAlignment="Center" Text="Szkoła w Bydgoszczy" />
+					<TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="10"
+							   Text="Najlepszy wzkaźnik kosztów na stancję:" />
+					<TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+							   Text="{Binding BestCostPerStaninSchoolName}" Margin="10"/>
 				</StackPanel>
 			</ScrollViewer>
 		</Border>
@@ -23,6 +27,8 @@
 					  ResizeDirection="Columns"/>
 		<Border Grid.Column="2"
 				CornerRadius="5"
+				MinWidth="50"
+				MinHeight="50"
 				Margin="5"
 				Background="{StaticResource Gray12}">
 
@@ -31,6 +37,8 @@
 					  ResizeDirection="Columns"/>
 		<Border Grid.Column="4"
 				CornerRadius="5"
+				MinWidth="50"
+				MinHeight="50"
 				Margin="5"
 				Background="{StaticResource Gray12}">
 
@@ -42,6 +50,8 @@
 
 		<Border Grid.Row="2"
 				CornerRadius="5"
+				MinWidth="50"
+				MinHeight="50"
 				Margin="5"
 				Background="{StaticResource Gray12}">
 
@@ -52,6 +62,8 @@
 		<Border Grid.Row="2"
 				Grid.Column="2"
 				CornerRadius="5"
+				MinWidth="50"
+				MinHeight="50"
 				Margin="5"
 				Background="{StaticResource Gray12}">
 
@@ -62,6 +74,8 @@
 		<Border Grid.Row="2"
 				Grid.Column="4"
 				CornerRadius="5"
+				MinWidth="50"
+				MinHeight="50"
 				Margin="5"
 				Background="{StaticResource Gray12}">
 
