@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace Application.ViewModels
 {
@@ -11,9 +13,19 @@ namespace Application.ViewModels
         public List<ISeries> SaldosPerStudentSeries { get; set; }
         public List<ISeries> StalinSeries { get; set; }
         public List<ISeries> CostPerStalinSeries { get; set; }
+
+        [ObservableProperty]
+        private Axis[] _xAxes = { new Axis { IsVisible = false } };
+        [ObservableProperty]
+        private Axis[] _yAxes = { new Axis { IsVisible = false, } };
+
         private readonly ApplicationDataStore _applicationDataStore;
         public PlotterViewModel(ApplicationDataStore applicationDataStore, IServiceProvider serviceProvider) : base(serviceProvider) 
         {
+            _applicationDataStore = applicationDataStore;
+
+            XAxes[0].Labels = _applicationDataStore.Schools.Select(i => i.Name).ToList();
+
             var saldos = new List<decimal>();
             var saldosPerStudent = new List<decimal>();
             var stalin = new List<decimal>();
@@ -31,7 +43,8 @@ namespace Application.ViewModels
             {
                 Values = saldos,
                 Stroke = null,
-                Padding = 2
+                Padding = 2,
+
             };
 
             var columnSeries2 = new ColumnSeries<decimal>
