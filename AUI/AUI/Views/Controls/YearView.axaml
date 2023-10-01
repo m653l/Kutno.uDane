@@ -5,15 +5,19 @@
 			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.Controls.YearView">
-	<Grid HorizontalAlligment="Stretch">
-		<Expander MaxWidth="100000" Margin="10" HorizontalContentAligment="Stretch" HorizontalAligment="Stretch">
-			<Expander.Header MaxWidth="100000" HorizontalContentAligment="Stretch" HorizontalAligment="Stretch">
-				<StackPanel Orientation="Horizontal">
+	<Grid>
+		<Expander MaxWidth="100000" Margin="10" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+			<Expander.Header>
+				<StackPanel>
 					<Label Content="{Binding Name}"/>
 				</StackPanel>
 			</Expander.Header>
-			<Grid RowDefinitions="Auto *">
+			<Grid RowDefinitions="Auto 350">
 				<StackPanel Grid.Row="0">
+					<Grid ColumnDefinitions="0.5*, *, *, 0.5*" Margin="10 0">
+						<Label Grid.Column="1" Content="Nazwa Zestawienia dla Roku: "/>
+						<TextBox Grid.Column="2" Text="{Binding Name}" Margin="10 5"/>
+					</Grid>
 					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
 						<Label Grid.Column="0" Content="Wybierz plik SIO: "/>
 						<TextBox Grid.Column="1" Text="{Binding SioFilePath}" Margin="10 5"/>
@@ -42,14 +46,24 @@
 								Command="{Binding PickIncomesCommand}"
 								CommandParameter="{Binding $parent[UserControl]}"/>
 					</Grid>
+					<Grid ColumnDefinitions="*, *">
 					<StackPanel Orientation="Horizontal" Margin="10">
 						<Button	Content="Analizuj Dane"
 								Classes="analize"
 								Command="{Binding ReadDataCommand}"/>
 
 						<TextBlock Margin="10 5 0 0">Ilość uczniów:</TextBlock>
-					</StackPanel>
 
+						
+					</StackPanel>
+					<StackPanel Grid.Column="1"
+								HorizontalAlignment="Right" Orientation="Horizontal">
+						<Button	Content="Usuń zestawienie"
+								HorizontalAlignment="Right"
+								Classes="danger"
+								Command="{Binding DeleteYearCommand}"/>
+					</StackPanel>
+					</Grid>
 				</StackPanel>
 				<lvc:CartesianChart Grid.Row="1"
 									Series="{Binding Series}"

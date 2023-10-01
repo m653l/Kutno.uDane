@@ -197,6 +197,10 @@ namespace Application.ViewModels.Controls
 
             OnPropertyChanged(nameof(SchoolsInfo));
         }
-
+        [RelayCommand]
+        public void DeleteYear()
+        {
+            _applicationDataStore.Years.Remove(this);
+        }
     }
 }

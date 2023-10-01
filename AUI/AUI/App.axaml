@@ -42,8 +42,8 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceInclude Source='/Styles/Button.axaml'/>
-				<ResourceInclude Source='/Styles/Expander.axaml'/>
 			</ResourceDictionary.MergedDictionaries>
+
 		</ResourceDictionary>
 	</Application.Resources>
 	
