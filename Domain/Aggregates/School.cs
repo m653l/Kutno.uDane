@@ -21,7 +21,7 @@
         public decimal GetSaldo()
         {
             Saldo = SumOfMoney;
-            return SumOfMoney; // + Income - Expenses
+            return SumOfMoney + Income - Expenses;
         }
 
         public decimal GetSaldoPerStudent()

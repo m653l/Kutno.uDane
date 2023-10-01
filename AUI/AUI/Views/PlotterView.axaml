@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.PlotterView">
 	<Grid>
-		<TabControl Margin="5" SelectedIndex="{Binding SelectedIndex}">
+		<TabControl Margin="5" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
 			<TabItem Name="tab1" Header="Saldo">
 				<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}" XAxes="{Binding XAxes}"  YAxes="{Binding YAxes}"/>
 			</TabItem>
