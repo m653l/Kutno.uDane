@@ -44,6 +44,7 @@ namespace Application
             services.AddSingleton<MainViewModel>();
             services.AddTransient<ErrorDialogViewModel>();
             services.AddTransient<WelcomeViewModel>();
+            services.AddTransient<YearViewModel>();
 
             services.AddSingleton<DashboardViewModel>();
             services.AddSingleton<PlotterViewModel>();

@@ -56,7 +56,7 @@ namespace Application.ViewModels
 
             OpenInfoPopupCommand = new RelayCommand(OpenInfoPopup);
 
-            for (int i = 0; i < applicationDataStore.Schools.Count; i++)
+            for (int i = 0; i < applicationDataStore.ActiveYear.Schools.Count; i++)
             _paints = Enumerable.Range(0, _applicationDataStore.ActiveYear.Schools.Count)
                     .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i % ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
                     .ToArray();
@@ -134,19 +134,19 @@ namespace Application.ViewModels
 
         public void UpdateCharts()
         {
-            XAxes[0].Labels = _applicationDataStore.Schools.Select(i => i.Name).ToList();
+            XAxes[0].Labels = _applicationDataStore.ActiveYear.Schools.Select(i => i.Name).ToList();
 
             var saldos = new List<decimal>();
             var saldosPerStudent = new List<decimal>();
             var stalin = new List<decimal>();
             var costPerStalin = new List<decimal>();
 
-            for (int i = 0; i < _applicationDataStore.Schools.Count; i++)
+            for (int i = 0; i < _applicationDataStore.ActiveYear.Schools.Count; i++)
             {
-                saldos.Add(_applicationDataStore.Schools[i].Saldo());
-                saldosPerStudent.Add(_applicationDataStore.Schools[i].SaldoPerStudent());
-                stalin.Add(_applicationDataStore.Schools[i].GetTrzyStaliny());
-                costPerStalin.Add(_applicationDataStore.Schools[i].GetCostPerStanin());
+                saldos.Add(_applicationDataStore.ActiveYear.Schools[i].Saldo());
+                saldosPerStudent.Add(_applicationDataStore.ActiveYear.Schools[i].SaldoPerStudent());
+                stalin.Add(_applicationDataStore.ActiveYear.Schools[i].GetTrzyStaliny());
+                costPerStalin.Add(_applicationDataStore.ActiveYear.Schools[i].GetCostPerStanin());
             }
 
             var columnSeries1 = new ColumnSeries<decimal>

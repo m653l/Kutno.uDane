@@ -9,11 +9,17 @@
              x:Class="AUI.Views.DashboardView">
 	<StackPanel>
 		<ItemsControl ItemsSource="{Binding Years}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate DataType="{x:Type controlsVM:YearViewModel}">
+					<controls:YearView />
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<StackPanel Orientation="Vertical"/>
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
+		
 		</ItemsControl>
 		<Button HorizontalAlignment="Stretch" 
 				Height="50" 
