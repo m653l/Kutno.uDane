@@ -3,20 +3,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+			 xmlns:converters="using:AUI.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.Controls.YearView">
+
+	<UserControl.Resources>
+		<converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+	</UserControl.Resources>
+
+	
+
 	<Grid>
 		<Expander MaxWidth="100000" Margin="10" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
 			<Expander.Header>
-				<StackPanel>
+				<StackPanel Orientation="Horizontal">
 					<Label Content="{Binding Name}"/>
+					<Label Content="{Binding DateTime, Converter={StaticResource DateTimeToStringConverter}}"/>
+
 				</StackPanel>
 			</Expander.Header>
 			<Grid RowDefinitions="Auto 350">
 				<StackPanel Grid.Row="0">
-					<Grid ColumnDefinitions="0.5*, *, *, 0.5*" Margin="10 0">
-						<Label Grid.Column="1" Content="Nazwa Zestawienia dla Roku: "/>
-						<TextBox Grid.Column="2" Text="{Binding Name}" Margin="10 5"/>
+					<Grid ColumnDefinitions=" *, *, *" Margin="10 0">
+						<Label Grid.Column="0" Content="Nazwa Zestawienia dla Roku: "/>
+						<TextBox Grid.Column="1" Text="{Binding Name}" Margin="10 5"/>
+						<DatePicker Grid.Column="2" SelectedDate="{Binding Date}"/>
 					</Grid>
 					<Grid ColumnDefinitions="0.3*, *, Auto" Margin="10 0">
 						<Label Grid.Column="0" Content="Wybierz plik SIO: "/>
@@ -48,9 +59,6 @@
 					</Grid>
 					<Grid ColumnDefinitions="*, *">
 					<StackPanel Orientation="Horizontal" Margin="10">
-						<Button	Content="Analizuj Dane"
-								Classes="analize"
-								Command="{Binding ReadDataCommand}"/>
 
 						<TextBlock Margin="10 5 0 0">Ilość uczniów:</TextBlock>
 

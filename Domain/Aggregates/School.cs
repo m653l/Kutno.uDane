@@ -9,19 +9,26 @@
         public Exam EngExam { get; set; } = new();
 
         public decimal AvgMoneyPerStudent { get; set; }
-        public decimal SumOfMoney { get; set; }
+        public decimal SumOfMoney { get; set; } = 0;
         public decimal Income { get; set; } = 0;
         public decimal Expenses { get; set; } = 0;
+
+        public decimal Saldo { get; set; } = 0;
+        public decimal SaldoPerStudent { get; set; } = 0;
+        public int TrzyStaliny { get; set; } = 0;
         public decimal CostPerStanin { get; set; } = 0;
 
-        public decimal Saldo()
+        public decimal GetSaldo()
         {
+            Saldo = SumOfMoney;
             return SumOfMoney; // + Income - Expenses
         }
 
-        public decimal SaldoPerStudent()
+        public decimal GetSaldoPerStudent()
         {
-            return Saldo()/StudentCount;
+            var result = GetSaldo() / StudentCount;
+            SaldoPerStudent = result;
+            return result;
         }
 
         public int GetTrzyStaliny()
@@ -33,12 +40,14 @@
             int polishStalin = PolishExam.Stanin.Value;
             int engStalin = EngExam.Stanin.Value;
 
-            return mathStalin + polishStalin + engStalin;
+            int result = mathStalin + polishStalin + engStalin;
+            TrzyStaliny = result;
+            return result;
         }
 
         public decimal GetCostPerStanin()
         {
-            decimal result = SaldoPerStudent() / GetTrzyStaliny() / 3;
+            decimal result = GetSaldoPerStudent() / GetTrzyStaliny() / 3;
             CostPerStanin = result;
             return result;
         }

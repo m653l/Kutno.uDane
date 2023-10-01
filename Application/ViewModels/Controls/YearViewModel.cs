@@ -30,6 +30,8 @@ namespace Application.ViewModels.Controls
         [ObservableProperty]
         private string _name;
         [ObservableProperty]
+        private DateTimeOffset _date;
+        [ObservableProperty]
         private ISeries[] _series;
 
         [ObservableProperty]
@@ -114,7 +116,6 @@ namespace Application.ViewModels.Controls
             IncomesFilePath = await PickFileAsync(view);
         }
 
-        [RelayCommand]
         public async Task ReadData()
         {
             if (SioFilePath is "" || SchoolsFilePath is "" || ExpensesFilePath is "" || IncomesFilePath is "")
@@ -161,6 +162,18 @@ namespace Application.ViewModels.Controls
         {
             Series[0].Values = Enumerable.Empty<PilotInfo>();
             SchoolsInfo = new ObservableCollection<PilotInfo>();
+            Schools = new ObservableCollection<School>();
+
+            _importDataService.ImportData(this, SioFilePath, SchoolsFilePath, ExpensesFilePath, IncomesFilePath);
+
+            _paints = Enumerable.Range(0, Schools.Count)
+            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i % ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
+            .ToArray();
+
+            for (int i = 0; i < Schools.Count; i++)
+            {
+                SchoolsInfo.Add(new PilotInfo(Schools[i].Name, (double)Schools[i].StudentCount, _paints[i]));
+            }
 
             var rowSeries = (RowSeries<PilotInfo>)new RowSeries<PilotInfo>
             {
@@ -179,17 +192,7 @@ namespace Application.ViewModels.Controls
                 if (point.Visual is null) return;
                 point.Visual.Fill = point.Model!.Paint;
             });
-
-            _series = new[] { rowSeries };
-
-            _paints = Enumerable.Range(0, SchoolsInfo.Count)
-            .Select(i => new SolidColorPaint(ColorPalletes.MaterialDesign500[i % ColorPalletes.MaterialDesign500.Count()].AsSKColor()))
-            .ToArray();
-
-            for (int i = 0; i < SchoolsInfo.Count; i++)
-            {
-                SchoolsInfo.Add(new PilotInfo(SchoolsInfo[i].Name, SchoolsInfo[i].Value, _paints[i]));
-            }
+            Series = new[] { rowSeries };
 
             Series[0].Values = SchoolsInfo.OrderBy(i => i.Value).ToList();
 

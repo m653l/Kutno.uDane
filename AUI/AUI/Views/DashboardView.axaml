@@ -7,27 +7,40 @@
 			 xmlns:controls="using:AUI.Views.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AUI.Views.DashboardView">
-	<ScrollViewer>
-		<StackPanel>
-			<ItemsControl ItemsSource="{Binding Years}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate DataType="{x:Type controlsVM:YearViewModel}">
-						<controls:YearView />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Vertical"/>
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-		
-			</ItemsControl>
-			<Button HorizontalAlignment="Stretch" 
-					Height="50" 
-					Background="{StaticResource Gray11}"
-					Command="{Binding AddNewYearCommand}">
-				<Label Content="Add new year"/>
-			</Button>
-		</StackPanel>
-	</ScrollViewer>
-	</UserControl>
+	<Grid>
+		<ScrollViewer>
+			<StackPanel>
+				<ItemsControl ItemsSource="{Binding Years}" VerticalAlignment="Top">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate DataType="{x:Type controlsVM:YearViewModel}">
+							<controls:YearView />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Vertical"/>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+
+				</ItemsControl>
+				<Button HorizontalAlignment="Stretch"
+						Height="50"
+						Margin="10 0 10 0"
+						Background="{StaticResource Gray11}"
+						Command="{Binding AddNewYearCommand}">
+					<Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add new year"/>
+				</Button>
+			</StackPanel>
+		</ScrollViewer>
+		<Button Margin="20" 
+				Classes="accent"
+				Command="{Binding AnalyzeDataCommand}"
+				VerticalAlignment="Bottom"
+				Padding="10"
+				CornerRadius="10"
+				Background="{StaticResource Success}"
+				HorizontalAlignment="Right">
+			<PathIcon Width="30" Height="30" Data="{StaticResource window_new_regular}"/>
+		</Button>
+	</Grid>
+</UserControl>
