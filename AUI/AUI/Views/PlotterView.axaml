@@ -8,16 +8,16 @@
 	<Grid>
 		<TabControl Margin="5" SelectedIndex="{Binding SelectedIndex}">
 			<TabItem Name="tab1" Header="Saldo">
-				<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}"/>
+				<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}" XAxes="{Binding XAxes}"  YAxes="{Binding YAxes}"/>
 			</TabItem>
 			<TabItem Name="tab2" Header="Saldo na ucznia">
-				<lvc:CartesianChart Name="chart2" Series="{Binding SaldosPerStudentSeries}"/>
+				<lvc:CartesianChart Name="chart2" Series="{Binding SaldosPerStudentSeries}" XAxes="{Binding XAxes}"  YAxes="{Binding YAxes}"/>
 			</TabItem>
 			<TabItem  Name="tab3" Header="Staniny">
-				<lvc:CartesianChart Name="chart3" Series="{Binding StalinSeries}"/>
+				<lvc:CartesianChart Name="chart3" Series="{Binding StalinSeries}" XAxes="{Binding XAxes}"  YAxes="{Binding YAxes}"/>
 			</TabItem>
 			<TabItem  Name="tab4" Header="Wzkaźnik">
-				<lvc:CartesianChart Name="chart4" Series="{Binding CostPerStalinSeries}"/>
+				<lvc:CartesianChart Name="chart4" Series="{Binding CostPerStalinSeries}" XAxes="{Binding XAxes}"  YAxes="{Binding YAxes}"/>
 			</TabItem>
 		</TabControl>
 

@@ -15,6 +15,7 @@ using LiveChartsCore.Themes;
 using Microsoft.Extensions.DependencyInjection;
 using SkiaSharp;
 using System.Collections.ObjectModel;
+using System.Reflection.Emit;
 
 namespace Application.ViewModels
 {
