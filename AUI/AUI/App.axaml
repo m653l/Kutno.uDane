@@ -9,22 +9,6 @@
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
 	<Application.DataTemplates>
-		<DataTemplate DataType="{x:Type viewModels:BoberViewModel}">
-			<views:BoberView />
-		</DataTemplate>
-		<DataTemplate DataType="{x:Type controlsVM:YearViewModel}">
-			<controls:YearView />
-		</DataTemplate>
-		<DataTemplate DataType="{x:Type viewModels:KapibaraViewModel}">
-			<views:KapibaraView />
-		</DataTemplate>
-		<DataTemplate DataType="{x:Type viewModels:PlotViewModel}">
-			<views:PlotView/>
-		</DataTemplate>
-		<DataTemplate DataType="{x:Type controlsVM:JumpScareDialogViewModel}">
-			<controls:JumpscareDialogView />
-		</DataTemplate>
-
 		<DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
 			<views:DashboardView />
 		</DataTemplate>
@@ -39,6 +23,9 @@
 		</DataTemplate>
 		<DataTemplate DataType="{x:Type controlsVM:ErrorDialogViewModel}">
 			<controls:ErrorDialogView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewModels:WelcomeViewModel}">
+			<views:WelcomeView />
 		</DataTemplate>
 		
 	</Application.DataTemplates>

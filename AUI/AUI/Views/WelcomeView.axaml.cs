@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace AUI.Views
 {
-    public partial class KapibaraView : UserControl
+    public partial class WelcomeView : UserControl
     {
-        public KapibaraView()
+        public WelcomeView()
         {
             InitializeComponent();
         }

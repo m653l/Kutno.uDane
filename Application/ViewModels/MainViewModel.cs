@@ -1,4 +1,5 @@
 ﻿using Application.Stores;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 
 namespace Application.ViewModels
@@ -56,9 +57,9 @@ namespace Application.ViewModels
             OnPropertyChanged(nameof(CurrentViewModel));
         }
 
-        internal void SwitchToDefaultView()
+        private void SwitchToDefaultView()
         {
-            _navigation.NavigateTo<BoberViewModel>();
+            _navigation.NavigateTo<WelcomeViewModel>();
         }
     }
 }

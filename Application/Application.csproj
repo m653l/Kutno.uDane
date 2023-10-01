@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Background\" />
+    <Folder Include="Commands\" />
     <Folder Include="Common\" />
     <Folder Include="Queries\" />
     <Folder Include="Validators\" />
