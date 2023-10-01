@@ -37,6 +37,9 @@
 		<DataTemplate DataType="{x:Type controlsVM:ErrorDialogViewModel}">
 			<controls:ErrorDialogView />
 		</DataTemplate>
+		<DataTemplate DataType="{x:Type viewModels:WelcomeViewModel}">
+			<views:WelcomeView />
+		</DataTemplate>
 		
 	</Application.DataTemplates>
 

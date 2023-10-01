@@ -102,6 +102,58 @@ namespace Application.ViewModels
             _popupService = popupService;
         }
 
+        public void UpdateCharts()
+        {
+            XAxes[0].Labels = _applicationDataStore.Schools.Select(i => i.Name).ToList();
+
+            var saldos = new List<decimal>();
+            var saldosPerStudent = new List<decimal>();
+            var stalin = new List<decimal>();
+            var costPerStalin = new List<decimal>();
+
+            for (int i = 0; i < _applicationDataStore.Schools.Count; i++)
+            {
+                saldos.Add(_applicationDataStore.Schools[i].Saldo());
+                saldosPerStudent.Add(_applicationDataStore.Schools[i].SaldoPerStudent());
+                stalin.Add(_applicationDataStore.Schools[i].GetTrzyStaliny());
+                costPerStalin.Add(_applicationDataStore.Schools[i].GetCostPerStanin());
+            }
+
+            var columnSeries1 = new ColumnSeries<decimal>
+            {
+                Values = saldos,
+                Stroke = null,
+                Padding = 2,
+
+            };
+
+            var columnSeries2 = new ColumnSeries<decimal>
+            {
+                Values = saldosPerStudent,
+                Stroke = null,
+                Padding = 2
+            };
+
+            var columnSeries3 = new ColumnSeries<decimal>
+            {
+                Values = stalin,
+                Stroke = null,
+                Padding = 2
+            };
+
+            var columnSeries4 = new ColumnSeries<decimal>
+            {
+                Values = costPerStalin,
+                Stroke = null,
+                Padding = 2
+            };
+
+            SaldosSeries = new List<ISeries> { columnSeries1 };
+            SaldosPerStudentSeries = new List<ISeries> { columnSeries2 };
+            StalinSeries = new List<ISeries> { columnSeries3 };
+            CostPerStalinSeries = new List<ISeries> { columnSeries4 };
+        }
+
         private void OpenInfoPopup()
         {
             ErrorDialogViewModel vm = _serviceProvider.GetRequiredService<ErrorDialogViewModel>();

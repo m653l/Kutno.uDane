@@ -1,0 +1,12 @@
+using Avalonia.Controls;
+
+namespace AUI.Views
+{
+    public partial class WelcomeView : UserControl
+    {
+        public WelcomeView()
+        {
+            InitializeComponent();
+        }
+    }
+}

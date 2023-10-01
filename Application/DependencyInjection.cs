@@ -46,6 +46,7 @@ namespace Application
             services.AddTransient<BoberViewModel>();
             services.AddTransient<KapibaraViewModel>();
             services.AddTransient<ErrorDialogViewModel>();
+            services.AddTransient<WelcomeViewModel>();
 
             services.AddSingleton<DashboardViewModel>();
             services.AddSingleton<PlotterViewModel>();

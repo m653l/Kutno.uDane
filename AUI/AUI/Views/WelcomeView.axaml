@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AUI.Views.WelcomeView">
+	<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+	    <Image Margin="0" Height="150" Source="/Assets/logo.ico"></Image>
+		<TextBlock Text="uDane Kształcenie Złotówki" 
+				   FontWeight="Bold" 
+				   VerticalAlignment="Center"
+				   HorizontalAlignment="Center"
+				   Margin="0 20"
+				   FontSize="36" />
+		<Button Content="Start" 
+				Command="{Binding GoNextCommand}"
+				HorizontalAlignment="Center" 
+				FontWeight="ExtraBold" 
+				FontSize="24" />
+	</StackPanel>
+</UserControl>

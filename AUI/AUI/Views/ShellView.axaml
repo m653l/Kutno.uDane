@@ -7,7 +7,8 @@
              xmlns:viewModels="using:Application.ViewModels"
 			 xmlns:helpers="using:AUI.Views.Helpers"
 			 helpers:ViewModelLocator.AutoWireViewModel="True"
-			 x:DataType="viewModels:ShellViewModel">
+			 x:DataType="viewModels:ShellViewModel"
+			 IsVisible="{Binding IsViewVisable}">
 
 
 	
@@ -22,12 +23,14 @@
 			</Button>
 			<Button Foreground="{StaticResource ThemeColor}"
 					Classes="Toolbar"
+					IsEnabled="{Binding PlotterActivator}"
 					Margin="0 5 0 0"
 					Command="{Binding GoToPlotterCommand}">
 				<PathIcon Data="{StaticResource data_scatter_regular}"/>
 			</Button>
 			<Button Foreground="{StaticResource ThemeColor}"
 					Classes="Toolbar"
+					IsEnabled="{Binding SummaryActivator}"
 					Margin="0 5 0 0"
 					Command="{Binding GoToSummaryCommand}">
 				<PathIcon Data="{StaticResource organization_regular}"/>
