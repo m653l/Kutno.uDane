@@ -130,7 +130,7 @@ namespace Application.Services
 
                         decimal avgPerStudent = avgNumerator / studentCount;
 
-                        decimal schoolSum = avgNumerator;
+                        decimal schoolSum = avgNumerator + studentCount * moneyPerStudent;
 
                         school.AvgMoneyPerStudent = avgPerStudent;
                         school.SumOfMoney = schoolSum;

@@ -10,13 +10,13 @@
 			<lvc:CartesianChart Name="chart1" Series="{Binding SaldosSeries}"/>
 		</TabItem>
 		<TabItem Name="tab2" Header="Saldo na ucznia">
-			<lvc:CartesianChart Name="chart2" Series="{Binding Series}"/>
+			<lvc:CartesianChart Name="chart2" Series="{Binding SaldosPerStudentSeries}"/>
 		</TabItem>
 		<TabItem  Name="tab3" Header="Staniny">
-			<lvc:CartesianChart Name="chart3" Series="{Binding Series}"/>
+			<lvc:CartesianChart Name="chart3" Series="{Binding StalinSeries}"/>
 		</TabItem>
 		<TabItem  Name="tab4" Header="Wzkaźnik">
-			<lvc:CartesianChart Name="chart4" Series="{Binding Series}"/>
+			<lvc:CartesianChart Name="chart4" Series="{Binding CostPerStalinSeries}"/>
 		</TabItem>
 	</TabControl>
 </UserControl>

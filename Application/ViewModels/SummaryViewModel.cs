@@ -8,8 +8,6 @@ namespace Application.ViewModels
 {
     public class SummaryViewModel : CoreViewModel
     {
-        public SummaryViewModel(IServiceProvider serviceProvider) : base(serviceProvider)
-        {
-        }
+        public SummaryViewModel(IServiceProvider serviceProvider) : base(serviceProvider) { }
     }
 }
