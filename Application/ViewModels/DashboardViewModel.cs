@@ -64,6 +64,7 @@ namespace Application.ViewModels
                 else
                 {
                     year.ReadData();
+                    _applicationDataStore.ActiveYear = _applicationDataStore.Years.FirstOrDefault();
                 }
             }
         }

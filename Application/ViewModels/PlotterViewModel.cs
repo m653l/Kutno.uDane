@@ -162,8 +162,8 @@ namespace Application.ViewModels
 
             for (int i = 0; i < _applicationDataStore.ActiveYear.Schools.Count; i++)
             {
-                saldos.Add(_applicationDataStore.ActiveYear.Schools[i].Saldo());
-                saldosPerStudent.Add(_applicationDataStore.ActiveYear.Schools[i].SaldoPerStudent());
+                saldos.Add(_applicationDataStore.ActiveYear.Schools[i].GetSaldo());
+                saldosPerStudent.Add(_applicationDataStore.ActiveYear.Schools[i].GetSaldoPerStudent());
                 stalin.Add(_applicationDataStore.ActiveYear.Schools[i].GetTrzyStaliny());
                 costPerStalin.Add(_applicationDataStore.ActiveYear.Schools[i].GetCostPerStanin());
             }
@@ -205,7 +205,8 @@ namespace Application.ViewModels
 
         private void UpdateChart(int newValue)
         {
-
+            _applicationDataStore.ActiveYear = _applicationDataStore.Years[newValue];
+            UpdateCharts();
         }
 
         private void OpenInfoPopup()
