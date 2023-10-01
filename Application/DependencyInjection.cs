@@ -42,9 +42,6 @@ namespace Application
         {
             services.AddSingleton<ShellViewModel>();
             services.AddSingleton<MainViewModel>();
-            services.AddSingleton<PlotViewModel>();
-            services.AddTransient<BoberViewModel>();
-            services.AddTransient<KapibaraViewModel>();
             services.AddTransient<ErrorDialogViewModel>();
             services.AddTransient<WelcomeViewModel>();
 
@@ -52,9 +49,6 @@ namespace Application
             services.AddSingleton<PlotterViewModel>();
             services.AddSingleton<SummaryViewModel>();
             services.AddSingleton<SettingsViewModel>();
-
-
-            services.AddTransient<JumpScareDialogViewModel>();
         }
     }
 }

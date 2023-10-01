@@ -25,9 +25,6 @@ namespace Infrastructure
                 options.EnableSensitiveDataLogging(true);
             }, ServiceLifetime.Transient);
 
-            services.AddTransient<IGenericRepository<MainBeaver>, GenericRepository<MainBeaver>>();
-            services.AddTransient<IMainRepository, MainRepository>();
-
             return services;
         }
     }

@@ -50,12 +50,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Controls\JumpscareDialogView.axaml.cs">
-      <DependentUpon>JumpscareDialogView.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
